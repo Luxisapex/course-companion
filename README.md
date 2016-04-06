@@ -10,6 +10,7 @@ Course companion will become the university standard in terms of study planning 
 * Generate users' probable progression through their education
 * Let users modify generated data to simulate their situation
 * Compare users' progress to program goals
+
 ## Technical
 We intend to use technology that we have limited experience with, but feel comfortable knowing it should integrate well
 ### Front-end
