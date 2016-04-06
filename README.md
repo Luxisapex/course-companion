@@ -12,10 +12,14 @@ Course companion will become the university standard in terms of study planning 
 * Compare users' progress to program goals
 
 ## Technical
-We intend to use technology that we have limited experience with, but feel comfortable knowing it should integrate well
+We intend to use technology that we have limited experience with, but feel comfortable knowing it should integrate well.
 ### Front-end
 Our intended front-end framework is React, with the potential extension to use a state-manager such as Redux. We believe that React will easily let us customize the front-end experience depending on the data supplied and allow us to exercise strict control of the data at the same time. We are aware that React may be lacking in terms of handling state, and will consider bringing Redux or similar into the stack if there is an apparant need.
 ### Server
 We intend to use Meteor for running our server. We have a little bit of experience doing this from before, and believe that it should integrate smoothly with React when done right. The choice is based on slight familiarity and we believe that we can learn to use it in a way which will be useful to our application.
 ### Deployment
 Heroku was at first our platform of choice, because we have some previous experience using it with very few hick-ups, but in an attempt to learn something new, we intend to deploy to Openshift, with Heroku being a fall-back. We have no knowledge of potential compatability issues in specific deployment environments, so we did not consider the rest of our tech stack when choosing to work with Openshift.
+### Testing
+We don't know how we will go about testing yet, but will research it and are open to suggestions. We believe Selenium may be useful in terms of UI testing but have never used it before.
+### Deployment system
+Probably we will use Webpack to handle dependencies and bundling in our application and we believe it fits under this headline.
