@@ -14,5 +14,6 @@ The resources will be placed under appropriate header and approximately sorted i
 [Youtube continuation to Meteor](https://www.youtube.com/watch?v=BI8IslJHSag&list=PLLnpHn493BHFYZUSK62aVycgcAouqBt7V&nohtml5=False)  
 [Youtube using Meteor with React](https://www.youtube.com/watch?v=ootKAwnQiP4&nohtml5=False)  
 [Official site](https://www.meteor.com/)
+[MeteorChef](https://themeteorchef.com/)
 
 TBC...
