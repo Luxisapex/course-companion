@@ -9,6 +9,7 @@ The resources will be placed under appropriate header and approximately sorted i
 ## Redux 
 [Thorough introduction by creator](https://egghead.io/series/getting-started-with-redux)
 ## Meteor
+[Study plan for Meteor 1.3](https://www.discovermeteor.com/blog/study-plan-meteor-1-3/#es6-modules-&-syntax)
 [Youtube introduction to Meteor](https://www.youtube.com/watch?v=hgjyr6BPAtA&list=PLLnpHn493BHECNl9I8gwos-hEfFrer7TV&nohtml5=False)
 [Youtube continuation to Meteor](https://www.youtube.com/watch?v=BI8IslJHSag&list=PLLnpHn493BHFYZUSK62aVycgcAouqBt7V&nohtml5=False)
 [Youtube using Meteor with React](https://www.youtube.com/watch?v=ootKAwnQiP4&nohtml5=False)
