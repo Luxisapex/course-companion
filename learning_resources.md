@@ -13,7 +13,7 @@ The resources will be placed under appropriate header and approximately sorted i
 [Youtube introduction to Meteor](https://www.youtube.com/watch?v=hgjyr6BPAtA&list=PLLnpHn493BHECNl9I8gwos-hEfFrer7TV&nohtml5=False)  
 [Youtube continuation to Meteor](https://www.youtube.com/watch?v=BI8IslJHSag&list=PLLnpHn493BHFYZUSK62aVycgcAouqBt7V&nohtml5=False)  
 [Youtube using Meteor with React](https://www.youtube.com/watch?v=ootKAwnQiP4&nohtml5=False)  
-[Official site](https://www.meteor.com/)
+[Official site](https://www.meteor.com/)  
 [MeteorChef](https://themeteorchef.com/)
 
 TBC...
