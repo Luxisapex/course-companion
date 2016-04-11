@@ -1,15 +1,10 @@
 {
   "name": "coursecompanion",
-  "version": "1.0.0",
-  "description": "Course companion is a tool which helps students plan their studies and find suitable courses ## Functional ### Background Today most students at LiU use a more or less customized Excel sheet which has been created over and over again, in many different fashions. These sheets are not necessarily reliable, and ask the user to bring most data into it, only assisting with some simple calculations and a little structure. We see a need for a unified, user friendly tool, which can be used by all (LiU)-students to plan their studies. ### Vision Course companion will become the university standard in terms of study planning aid. ### Core functions * Let users specify their education through simple, pre-defined choices * Generate users' probable progression through their education * Let users modify generated data to simulate their situation * Compare users' progress to program goals",
-  "main": "server.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "meteor run"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@gitlab.ida.liu.se:joega818/TDDD272016_coursecompanion.git"
-  },
-  "author": "Joel",
-  "license": "ISC"
+  "dependencies": {
+    "meteor-node-stubs": "~0.2.0"
+  }
 }
