@@ -1,5 +1,7 @@
 # Contribution Guidelines
 ## Architecture
+### Imports
+Almost all code should be put in the subfolder Imports in order to avoid unnecessary loading.
 ### UI
 The UI folder contains React code and is the view och the MVC pattern.  
 ### Container
