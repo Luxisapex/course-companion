@@ -1,5 +1,6 @@
 before_script:
   - npm install
+  - node -v
   - node server/main.js
 
 stages:
