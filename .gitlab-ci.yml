@@ -3,8 +3,15 @@ before_script:
 
 stages:
   - test
+  - deploy
 
-job_name:
+job_runtests:
   stage: test
   script:
     - npm run test
+
+job_deploy:
+  stage: deploy
+  script:
+    - gem install dpl
+    - dpl --provider=heroku --app=course-companion --api-key=$HEROKU_PRODUCTION_API_KEY
