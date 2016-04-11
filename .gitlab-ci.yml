@@ -13,5 +13,4 @@ job_runtests:
 job_deploy:
   stage: deploy
   script:
-    - gem install dpl
     - dpl --provider=heroku --app=course-companion --api-key=$HEROKU_PRODUCTION_API_KEY
