@@ -16,5 +16,5 @@ job_deploy:
     - gem install dpl
     - dpl --provider=heroku --app=course-companion --api-key=$HEROKU_PRODUCTION_API_KEY
 
-only:
-  - master
+  only:
+    - master
