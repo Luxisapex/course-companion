@@ -1,0 +1,11 @@
+before_script:
+  - npm install
+  - node server/main.js
+
+stages:
+  - test
+
+job_name:
+  stage: test
+  script:
+    - npm run test
