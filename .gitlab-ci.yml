@@ -3,18 +3,18 @@ before_script:
 
 stages:
   - test
-  - deploy
+  # - deploy
 
 job_runtests:
   stage: test
   script:
     - npm run test
+# NEEDS SUDO
+# job_deploy:
+#   stage: deploy
+#   script:
+#     - gem install dpl
+#     - dpl --provider=heroku --app=course-companion --api-key=$HEROKU_PRODUCTION_API_KEY
 
-job_deploy:
-  stage: deploy
-  script:
-    - sudo gem install dpl
-    - dpl --provider=heroku --app=course-companion --api-key=$HEROKU_PRODUCTION_API_KEY
-
-  only:
-    - master
+#   only:
+#     - master
