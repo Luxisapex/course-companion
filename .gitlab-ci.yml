@@ -1,7 +1,7 @@
 before_script:
   - npm install
-  - npm start
-# Does not work because of import statement. ES6?
+#  - npm start
+# Runs local server, does not end
 
 stages:
   - test
