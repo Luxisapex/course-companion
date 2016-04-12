@@ -1,6 +1,6 @@
 before_script:
   - npm install
-  - node server/main.js
+  - npm start
 # Does not work because of import statement. ES6?
 
 stages:
