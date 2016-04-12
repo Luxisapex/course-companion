@@ -1,5 +1,7 @@
 before_script:
   - npm install
+  - node server/main.js
+# Does not work because of import statement. ES6?
 
 stages:
   - test
@@ -9,7 +11,7 @@ job_runtests:
   stage: test
   script:
     - npm run test
-# NEEDS SUDO
+# NEEDS SUDO in shell.. try other env
 # job_deploy:
 #   stage: deploy
 #   script:
