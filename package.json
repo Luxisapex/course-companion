@@ -5,6 +5,7 @@
     "start": "meteor run",
     "test": "echo \"No test specified\""
   },
+  "main": "server/main.js"
   "dependencies": {
     "meteor-node-stubs": "~0.2.0",
     "react": "0.14.7",
