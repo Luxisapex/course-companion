@@ -1,7 +1,10 @@
 import { Meteor } from 'meteor/meteor';
 
-Courses = new Mongo.Collection("courses");
+// Import Collections (pieces of the DB)
+import '../../api/courses/courses.js';
+import '../../api/educations/educations.js';
 
+// Somehow necessary I think
 Meteor.startup(() => {
 	
 });
