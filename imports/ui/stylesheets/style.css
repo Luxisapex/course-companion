@@ -1,0 +1,9 @@
+.course {
+	margin-left: 50%;
+	margin-right: 5px;
+	margin-top: 5px;
+}
+
+.course > li {
+	list-style: none;
+}
