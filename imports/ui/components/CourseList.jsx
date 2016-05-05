@@ -4,8 +4,11 @@
 
 // Should receieve a student object
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Course from './Course.jsx';
+
+import { createContainer } from 'meteor/react-meteor-data';
+import { Courses } from '../../api/courses/courses.js';
 
 export default class CourseList extends React.Component {
 
@@ -20,3 +23,13 @@ export default class CourseList extends React.Component {
 		);
 	}
 }
+
+CourseList.propTypes = {
+	courses: PropTypes.array.isRequired,
+};
+
+export default createContainer(() => {
+	return {
+		courses: Courses.find({}).fetch(),
+	};
+}, CourseList);
