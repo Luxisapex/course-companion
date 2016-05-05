@@ -20,6 +20,7 @@ export default class Course extends React.Component {
 		// db.Courses.remove({ points: 876 })
 		// deleteCourse("572b8978a1c686bcde99e928");
 		Meteor.call('deleteCourse', { _str: "572b8978a1c686bcde99e928" });
+		console.log(this.props.courses);
 	}
 
 	render() {
