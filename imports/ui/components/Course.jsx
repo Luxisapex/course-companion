@@ -9,13 +9,17 @@
 import '../stylesheets/pure.css';
 import '../stylesheets/style.css';
 import '../stylesheets/font-awesome.css';
+import '../../api/courses/courses.js';
 
 import React from 'react';
 
 export default class Course extends React.Component {
 
 	removeCourse(event) {
-		return console.log("hej");
+		// return console.log("hej");
+		// db.Courses.remove({ points: 876 })
+		// deleteCourse("572b8978a1c686bcde99e928");
+		Meteor.call('deleteCourse', { _str: "572b8978a1c686bcde99e928" });
 	}
 
 	render() {

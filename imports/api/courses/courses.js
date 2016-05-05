@@ -54,7 +54,7 @@ Meteor.methods({
 		});
 	},
 	deleteCourse: function (id) {
-		Courses.remove(id);
+		Courses.remove({ _id: id });
 	}
 });
 
