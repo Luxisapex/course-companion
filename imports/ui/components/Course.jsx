@@ -13,14 +13,15 @@ import '../../api/courses/courses.js';
 
 import React from 'react';
 
+
+// Try this for checkbox
+
+// Meteor.call('toggleFinished', this._id, this.finished);
+
 export default class Course extends React.Component {
 
 	removeCourse(event) {
-		// return console.log("hej");
-		// db.Courses.remove({ points: 876 })
-		// deleteCourse("572b8978a1c686bcde99e928");
-		Meteor.call('deleteCourse', { _str: "572b8978a1c686bcde99e928" });
-		console.log(this.props.courses);
+		Meteor.call('deleteCourse', this.props._id);
 	}
 
 	render() {
@@ -31,7 +32,7 @@ export default class Course extends React.Component {
 				<li className="check-course"><input type="checkbox"/></li>
 				<li className="remove-course">
 					<a href=""lassName="btn btn-primary" 
-					onClick={this.removeCourse}>
+					onClick={this.removeCourse.bind(this)}>
 					<i className="fa fa-trash" aria-hidden="true"></i>
 					</a>
 				</li>

@@ -17,7 +17,7 @@ export default class CourseList extends React.Component {
 		return (
 			<div className="courses">
 				{this.props.courses.map((course)=> {
-					return <Course code={course.code} name={course.name} />
+					return <Course _id={course._id} code={course.code} name={course.name} />
 				})}
 			</div>
 		);
