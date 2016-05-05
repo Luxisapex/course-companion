@@ -29,6 +29,7 @@ CourseList.propTypes = {
 };
 
 export default createContainer(() => {
+	Meteor.subscribe('courses');
 	return {
 		courses: Courses.find({}).fetch(),
 	};
