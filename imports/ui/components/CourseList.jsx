@@ -24,10 +24,12 @@ export default class CourseList extends React.Component {
 	}
 }
 
+// Ehh?
 CourseList.propTypes = {
 	courses: PropTypes.array.isRequired,
 };
 
+// The link between Meteor data and React components
 export default createContainer(() => {
 	Meteor.subscribe('courses');
 	return {

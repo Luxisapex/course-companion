@@ -44,8 +44,10 @@ Courses.schema = new SimpleSchema({
 	}
 });
 
-// Course be placed in a separate file
+// Server side methods to be called from client
+// Could be placed in a separate file
 Meteor.methods({
+	// Should simply toggle the finished state of a course
 	toggleFinished: function (id, currentState) {
 		Courses.update(id, {
 			$set: {
@@ -53,6 +55,7 @@ Meteor.methods({
 			}
 		});
 	},
+	// Should remove a course based on an ID
 	deleteCourse: function (id) {
 		Courses.remove({ _id: id });
 	}
