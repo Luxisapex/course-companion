@@ -15,11 +15,11 @@ export default class CourseList extends React.Component {
 
 	render() {
 		return (
-			<div className="courses">
+			<ul className="courses">
 				{this.props.courses.map((course)=> {
-					return <Course _id={course._id} code={course.code} name={course.name} />
+					return <Course key={course._id} course={course} />
 				})}
-			</div>
+			</ul>
 		);
 	}
 }

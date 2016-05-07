@@ -13,30 +13,33 @@ import '../../api/courses/courses.js';
 
 import React from 'react';
 
-
-// Try this for checkbox
-
-// Meteor.call('toggleFinished', this._id, this.finished);
-
 export default class Course extends React.Component {
 
-	removeCourse(event) {
-		Meteor.call('deleteCourse', this.props._id);
+	removeCourse() {
+		Meteor.call('deleteCourse', this.props.course._id);
+	}
+
+	toggleFinished() {
+		Meteor.call('toggleFinished', this.props.course._id, this.props.course.finished);	
 	}
 
 	render() {
+
+		const courseClass = this.props.course.finished ? "checked" : "";
+
 		return (
-			<ul className="course">
-				<li className="course-code"><a href="/main">{this.props.code}</a></li>
-				<li className="course-name">{this.props.name}</li>
-				<li className="check-course"><input type="checkbox"/></li>
-				<li className="remove-course">
-					<a href=""lassName="btn btn-primary" 
-					onClick={this.removeCourse.bind(this)}>
+			<li className={courseClass}>
+				<a href="/main">{this.props.course.code}</a>
+				{this.props.course.name}
+				<input type="checkbox"
+					readOnly={true}
+					checked={this.props.course.finished}
+					onClick={this.toggleFinished.bind(this)}
+				/>
+				<a href="" onClick={this.removeCourse.bind(this)}>
 					<i className="fa fa-trash" aria-hidden="true"></i>
-					</a>
-				</li>
-			</ul>
+				</a>
+			</li>
 		);
 	}
 }
