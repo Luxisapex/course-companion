@@ -23,11 +23,11 @@ Meteor.startup(() => {
 			}
 		];
 
-		data.forEach((list) => {
-			Lists.insert({
-				name: list.name,
-				code: list.code,
-				points: list.points
+		data.forEach((listing) => {
+			Courses.insert({
+				name: listing.name,
+				code: listing.code,
+				points: listing.points
 			});
 		});
 	}
