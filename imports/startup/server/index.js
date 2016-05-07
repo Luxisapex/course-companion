@@ -20,6 +20,11 @@ Meteor.startup(() => {
 				name: "Matematisk grundkurs",
 				code: "TATA31",
 				points: 6
+			},
+			{
+				name: "Linjär algebra",
+				code: "TATA32",
+				points: 6
 			}
 		];
 
