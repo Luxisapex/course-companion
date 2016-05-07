@@ -7,7 +7,7 @@ import '../../api/courses/server/publications.js';
 // Not relevant for now
 // import '../../api/educations/educations.js';
 
-// Somehow necessary
+// When server is started: fill DB with data unless already populated
 Meteor.startup(() => {
 	if (Courses.find().count() === 0) {
 		const data = [
