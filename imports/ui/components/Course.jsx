@@ -30,6 +30,7 @@ export default class Course extends React.Component {
 		return (
 			<li className={courseClass}>
 				<a href="/main">{this.props.course.code}</a>
+				{this.props.course.points}
 				{this.props.course.name}
 				<input type="checkbox"
 					readOnly={true}

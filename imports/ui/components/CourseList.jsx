@@ -12,19 +12,23 @@ import { Courses } from '../../api/courses/courses.js';
 
 export default class CourseList extends React.Component {
 
-
+	// Sums up all HP as well as render all courses
 	render() {
+		let pointsSum = 0;
+
 		return (
 			<ul className="courses">
 				{this.props.courses.map((course)=> {
+					pointsSum += course.points;
 					return <Course key={course._id} course={course} />
 				})}
+				{pointsSum}
 			</ul>
 		);
 	}
 }
 
-// Ehh?
+// Uses another react-data package than Tracker, replace later
 CourseList.propTypes = {
 	courses: PropTypes.array.isRequired,
 };
