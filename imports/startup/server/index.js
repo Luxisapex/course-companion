@@ -14,16 +14,46 @@ Meteor.startup(() => {
 			{
 				name: "Ekonomisk grundkurs",
 				code: "TEIE17",
-				points: 6
+				points: 8
 			},
 			{
 				name: "Matematisk grundkurs",
 				code: "TATA31",
-				points: 6
+				points: 8
 			},
 			{
 				name: "Linjär algebra",
 				code: "TATA32",
+				points: 6
+			},
+			{
+				name: "Envariabelanalys 1",
+				code: "TATA41",
+				points: 6
+			},
+			{
+				name: "Envariabelanalys 2",
+				code: "TATA42",
+				points: 6
+			},
+			{
+				name: "Flervariabelanalys",
+				code: "TATA43",
+				points: 8
+			},
+			{
+				name: "Industriell organisation",
+				code: "TEIO61",
+				points: 8
+			},
+			{
+				name: "Programmering i ADA",
+				code: "TDDD95",
+				points: 6
+			},
+			{
+				name: "Godtycklig kurs",
+				code: "TEIE55",
 				points: 6
 			}
 		];

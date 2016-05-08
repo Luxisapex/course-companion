@@ -7,12 +7,14 @@
 import React, { PropTypes } from 'react';
 import Course from './Course.jsx';
 
+import '../stylesheets/style.css';
+
 import { createContainer } from 'meteor/react-meteor-data';
 import { Courses } from '../../api/courses/courses.js';
 
 export default class CourseList extends React.Component {
 
-	// Sums up all HP as well as render all courses
+	// Sums up all HP as well as render all courses, look over later
 	render() {
 		let pointsSum = 0;
 
@@ -22,7 +24,7 @@ export default class CourseList extends React.Component {
 					pointsSum += course.points;
 					return <Course key={course._id} course={course} />
 				})}
-				{pointsSum}
+				<b className="sum-margin">{pointsSum}</b>
 			</ul>
 		);
 	}

@@ -25,19 +25,20 @@ export default class Course extends React.Component {
 
 	render() {
 
-		const courseClass = this.props.course.finished ? "checked" : "";
+		const courseClass = this.props.course.finished ? "pure-g checked" : "pure-g";
 
 		return (
 			<li className={courseClass}>
-				<a href="/main">{this.props.course.code}</a>
-				{this.props.course.points}
-				{this.props.course.name}
-				<input type="checkbox"
+				<a className="pure-u-1-12" href="/main">{this.props.course.code}</a>
+				<span className="pure-u-1-24">{this.props.course.points}</span>
+				<span className="pure-u-1-8">{this.props.course.name}</span>
+				<input className="pure-u-1-24" 
+					type="checkbox"
 					readOnly={true}
 					checked={this.props.course.finished}
 					onClick={this.toggleFinished.bind(this)}
 				/>
-				<a href="" onClick={this.removeCourse.bind(this)}>
+				<a className="pure-u-1-24" href="" onClick={this.removeCourse.bind(this)}>
 					<i className="fa fa-trash" aria-hidden="true"></i>
 				</a>
 			</li>

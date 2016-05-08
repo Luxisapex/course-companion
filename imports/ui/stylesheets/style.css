@@ -11,3 +11,8 @@
 .checked {
 	background-color: gray;
 }
+
+.sum-margin {
+	margin-left: 110px;
+	border-top: solid black 1px;
+}
