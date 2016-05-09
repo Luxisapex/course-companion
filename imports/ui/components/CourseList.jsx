@@ -29,7 +29,8 @@ export default class CourseList extends React.Component {
 					}
 					return <Course key={course._id} course={course} />
 				})}
-				<b className="sum-margin">{pointsSum}</b>
+				{this.props.currentUser ?
+					<b className="sum-margin">{pointsSum}</b> : 'Does not display sum if not logged in'}
 			</ul>
 		);
 	}
@@ -38,6 +39,7 @@ export default class CourseList extends React.Component {
 // Uses another react-data package than Tracker, replace later
 CourseList.propTypes = {
 	courses: PropTypes.array.isRequired,
+	currentUser: PropTypes.object,
 };
 
 // The link between Meteor data and React components
@@ -45,5 +47,6 @@ export default createContainer(() => {
 	Meteor.subscribe('courses');
 	return {
 		courses: Courses.find({}).fetch(),
+		currentUser: Meteor.user(),
 	};
 }, CourseList);

@@ -22,3 +22,5 @@ meteortoys:allthings
 aldeed:simple-schema
 aldeed:collection2
 react-meteor-data
+accounts-ui
+accounts-password
