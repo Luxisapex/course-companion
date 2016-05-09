@@ -6,6 +6,7 @@
 * Start with indek, data, strategí and show all O-courses.
 * Let users add more courses with search field
 * Search bar for master and technical "inriktning"
+* Bring in grades and averages
 
 
 ## Styling

@@ -23,7 +23,6 @@ export default class CourseList extends React.Component {
 
 		return (
 			<ul className="courses">
-				<Navbar />
 				{this.props.courses.map((course)=> {
 					if(course.finished) {
 						pointsSum += course.points;
