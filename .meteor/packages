@@ -21,6 +21,7 @@ kadira:flow-router
 meteortoys:allthings
 aldeed:simple-schema
 aldeed:collection2
-react-meteor-data
+react-meteor-data		# Remove when TrackerReact is in full use
+ultimatejs:tracker-react
 accounts-ui
 accounts-password

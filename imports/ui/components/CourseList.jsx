@@ -5,6 +5,8 @@
 // Should receieve a student object
 
 import React, { PropTypes } from 'react';
+import TrackerReact from 'meteor/ultimatejs:tracker-react';
+
 import Course from './Course.jsx';
 
 // Temporary
