@@ -7,6 +7,9 @@
 import React, { PropTypes } from 'react';
 import Course from './Course.jsx';
 
+// Temporary
+import Navbar from './Navbar.jsx';
+
 import '../stylesheets/style.css';
 
 import { createContainer } from 'meteor/react-meteor-data';
@@ -20,8 +23,11 @@ export default class CourseList extends React.Component {
 
 		return (
 			<ul className="courses">
+				<Navbar />
 				{this.props.courses.map((course)=> {
-					pointsSum += course.points;
+					if(course.finished) {
+						pointsSum += course.points;
+					}
 					return <Course key={course._id} course={course} />
 				})}
 				<b className="sum-margin">{pointsSum}</b>
