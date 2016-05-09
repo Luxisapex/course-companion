@@ -1,54 +1,46 @@
 // Lists courses associated with a student
 
-// Should create course-objects (map over students courses) and pass down course code and name dynamically
-
-// Should receieve a student object
-
-import React, { PropTypes } from 'react';
+import React from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
+
+import { Courses } from '../../api/courses/courses.js';
 
 import Course from './Course.jsx';
 
-// Temporary
-import Navbar from './Navbar.jsx';
+export default class CourseList extends TrackerReact(React.Component) {
 
-import '../stylesheets/style.css';
+	constructor() {
+		super();
+		this.state = {
+			subscription: {
+				courses: Meteor.subscribe('courses')
+			}
+		}
+	}
 
-import { createContainer } from 'meteor/react-meteor-data';
-import { Courses } from '../../api/courses/courses.js';
+	componentWillUnmount() {
+	    this.state.subscription.tasks.stop();  
+	}
 
-export default class CourseList extends React.Component {
+	courses() {
+		return Courses.find({}).fetch();
+	}
 
 	// Sums up all HP as well as render all courses, look over later
 	render() {
 		let pointsSum = 0;
-
 		return (
 			<ul className="courses">
-				{this.props.courses.map((course)=> {
+				{this.courses().map((course)=> {
 					if(course.finished) {
 						pointsSum += course.points;
 					}
 					return <Course key={course._id} course={course} />
 				})}
-				{this.props.currentUser ?
-					<b className="sum-margin">{pointsSum}</b> : 'Does not display sum if not logged in'}
+				{ Meteor.user() ?
+					<b className="sum-margin">{pointsSum}</b> : 'Does not display sum if not logged in'
+				}
 			</ul>
 		);
 	}
 }
-
-// Uses another react-data package than Tracker, replace later
-CourseList.propTypes = {
-	courses: PropTypes.array.isRequired,
-	currentUser: PropTypes.object,
-};
-
-// The link between Meteor data and React components
-export default createContainer(() => {
-	Meteor.subscribe('courses');
-	return {
-		courses: Courses.find({}).fetch(),
-		currentUser: Meteor.user(),
-	};
-}, CourseList);
