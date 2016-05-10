@@ -46,6 +46,7 @@ Courses.schema = new SimpleSchema({
 
 // Server side methods to be called from client
 // Could be placed in a separate file
+// Very much should be placed in a separate file, since it handles different methods too
 Meteor.methods({
 	// Should simply toggle the finished state of a course
 	toggleFinished: function (id, currentState) {
@@ -58,6 +59,16 @@ Meteor.methods({
 	// Should remove a course based on an ID
 	deleteCourse: function (id) {
 		Courses.remove({ _id: id });
+	},
+	// Sets education to specified value
+	addEducation: function(education) {
+		Meteor.users.update({_id: this.userId}, {
+			$set: {
+				education: education 
+			}
+		}, {
+			upsert: true
+		});
 	}
 });
 

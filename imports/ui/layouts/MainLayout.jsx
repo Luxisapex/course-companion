@@ -3,6 +3,9 @@
 
 import React from 'react';
 
+
+// <InputField user={Meteor.user()}/>
+
 import Navbar from '../components/Navbar.jsx';
 import InputField from '../components/InputField.jsx';
 import SearchCourse from '../components/SearchCourse.jsx';
@@ -13,5 +16,6 @@ export const MainLayout = ({content}) => (
 		<AccountsUIWrapper />
 		<Navbar />
 		{content}
+		<InputField />
 	</div>
 );
