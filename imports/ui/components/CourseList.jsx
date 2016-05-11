@@ -19,7 +19,7 @@ export default class CourseList extends TrackerReact(React.Component) {
 	}
 
 	componentWillUnmount() {
-	    this.state.subscription.tasks.stop();  
+	    this.state.subscription.courses.stop();  
 	}
 
 	courses() {

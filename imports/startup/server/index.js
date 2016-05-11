@@ -7,8 +7,11 @@ import '../../api/courses/server/publications.js';
 // Not relevant for now
 // import '../../api/educations/educations.js';
 
-// When server is started: fill DB with data unless already populated
+// On server creation..
 Meteor.startup(() => {
+	// Make sure no login keys persist over server restart
+	Meteor.users.update({}, {$set : { "services.resume.loginTokens" : [] }}, {multi:true});
+	// Fill Courses DB with this data if empty
 	if (Courses.find().count() === 0) {
 		const data = [
 			{
