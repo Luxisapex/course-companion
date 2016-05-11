@@ -9,7 +9,9 @@
 import '../stylesheets/pure.css';
 import '../stylesheets/style.css';
 import '../stylesheets/font-awesome.css';
+// Need this?
 import '../../api/courses/courses.js';
+import '../../api/courses/methods.js';
 
 import React from 'react';
 

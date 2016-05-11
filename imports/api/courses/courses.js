@@ -44,23 +44,6 @@ Courses.schema = new SimpleSchema({
 	}
 });
 
-// Server side methods to be called from client
-// Could be placed in a separate file
-Meteor.methods({
-	// Should simply toggle the finished state of a course
-	toggleFinished: function (id, currentState) {
-		Courses.update(id, {
-			$set: {
-				finished: !currentState
-			}
-		});
-	},
-	// Should remove a course based on an ID
-	deleteCourse: function (id) {
-		Courses.remove({ _id: id });
-	}
-});
-
 // Attach the schema to the collection
 Courses.attachSchema(Courses.schema);
 
