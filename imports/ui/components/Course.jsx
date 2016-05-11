@@ -11,18 +11,28 @@ import '../stylesheets/style.css';
 import '../stylesheets/font-awesome.css';
 // Need this?
 import '../../api/courses/courses.js';
-import '../../api/courses/methods.js';
+
+import { deleteCourse, toggleFinished } from '../../api/courses/methods.js';
 
 import React from 'react';
 
 export default class Course extends React.Component {
 
-	removeCourse() {
-		Meteor.call('deleteCourse', this.props.course._id);
+	// This seems to bug out atm
+
+	deleteCourse() {
+	// 	// removeCourse.call('deleteCourse', this.props.course._id);
+	// 	deleteCourse.call({
+	// 		courseId: this.props.course._id,
+	// 	});
 	}
 
 	toggleFinished() {
-		Meteor.call('toggleFinished', this.props.course._id, this.props.course.finished);	
+	// 	// toggleFinished.call(this.props.course._id, this.props.course.finished);	
+	// 	toggleFinished.call({
+	// 		courseId: this.props.course._id,
+	// 		currentState: this.props.course.finished
+	// 	});
 	}
 
 	render() {
