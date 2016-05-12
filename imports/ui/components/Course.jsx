@@ -10,9 +10,9 @@ import '../stylesheets/pure.css';
 import '../stylesheets/style.css';
 import '../stylesheets/font-awesome.css';
 // Need this?
-import '../../api/courses/courses.js';
+import { Courses } from '../../api/courses/courses.js';
 
-import { deleteCourse, toggleFinished } from '../../api/courses/methods.js';
+import { toggleFinished, deleteCourse } from '../../api/courses/methods.js';
 
 import React from 'react';
 
@@ -20,19 +20,17 @@ export default class Course extends React.Component {
 
 	// This seems to bug out atm
 
-	deleteCourse() {
-	// 	// removeCourse.call('deleteCourse', this.props.course._id);
-	// 	deleteCourse.call({
-	// 		courseId: this.props.course._id,
-	// 	});
+	removeCourse() {
+		deleteCourse.call({
+			courseId: this.props.course._id
+		});
 	}
 
-	toggleFinished() {
-	// 	// toggleFinished.call(this.props.course._id, this.props.course.finished);	
-	// 	toggleFinished.call({
-	// 		courseId: this.props.course._id,
-	// 		currentState: this.props.course.finished
-	// 	});
+	toggleChecked() {
+		toggleFinished.call({
+			courseId: this.props.course._id,
+			currentState: this.props.course.finished
+		});
 	}
 
 	render() {
@@ -48,7 +46,7 @@ export default class Course extends React.Component {
 					type="checkbox"
 					readOnly={true}
 					checked={this.props.course.finished}
-					onClick={this.toggleFinished.bind(this)}
+					onClick={this.toggleChecked.bind(this)}
 				/>
 				<a className="pure-u-1-24" href="" onClick={this.removeCourse.bind(this)}>
 					<i className="fa fa-trash" aria-hidden="true"></i>

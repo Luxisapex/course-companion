@@ -5,24 +5,24 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 export const Courses = new Mongo.Collection('Courses');
 
 // Deny client side updates
-// Courses.deny({
-// 	insert() { return true; },
-// 	update() { return true; },
-// 	remove() { return true; },
-// });
+Courses.deny({
+	insert() { return true; },
+	update() { return true; },
+	remove() { return true; },
+});
 
 // Allow them for now
-Courses.allow({
-	insert: function(userId, doc) {
-		// Implement later when users exist
-		// return !!userId;
-		return true;
-	},
-	update: function(userId, doc) {
-		// Likewise
-		return true;
-	}
-})
+// Courses.allow({
+// 	insert: function(userId, doc) {
+// 		// Implement later when users exist
+// 		// return !!userId;
+// 		return true;
+// 	},
+// 	update: function(userId, doc) {
+// 		// Likewise
+// 		return true;
+// 	}
+// })
 
 // Define the schema 
 Courses.schema = new SimpleSchema({
