@@ -16,8 +16,6 @@ import React from 'react';
 
 export default class Course extends React.Component {
 
-	// This seems to bug out atm
-
 	removeCourse() {
 		deleteCourse.call({
 			courseId: this.props.course._id

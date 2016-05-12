@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+// import { AccountsServer } from 'meteor/accounts-base';
 
 // Import Collections (pieces of the DB) and its publications
 import {Courses} from '../../api/courses/courses.js';
@@ -9,6 +10,17 @@ import '../../api/courses/server/publications.js';
 // import later when using
 import '../../api/users/methods.js';
 import '../../api/users/server/publications.js';
+
+
+Accounts.onCreateUser(function(options, user) {
+	user.education = 'industriell ekonomi';
+	user.technical = 'datateknik';
+	user.master = 'strategi och styrning';
+
+	console.log(user);
+
+	return user;
+});
 
 // On server creation..
 Meteor.startup(() => {
