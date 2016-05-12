@@ -10,9 +10,6 @@ import '../../api/courses/server/publications.js';
 import '../../api/users/methods.js';
 import '../../api/users/server/publications.js';
 
-// Not relevant for now
-// import '../../api/educations/educations.js';
-
 // On server creation..
 Meteor.startup(() => {
 	// Make sure no login keys persist over server restart
