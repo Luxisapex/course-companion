@@ -1,3 +1,6 @@
+// State not even used right now??
+
+
 // Lists courses associated with a student
 
 import React from 'react';

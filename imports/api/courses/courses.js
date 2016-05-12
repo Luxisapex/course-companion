@@ -11,19 +11,6 @@ Courses.deny({
 	remove() { return true; },
 });
 
-// Allow them for now
-// Courses.allow({
-// 	insert: function(userId, doc) {
-// 		// Implement later when users exist
-// 		// return !!userId;
-// 		return true;
-// 	},
-// 	update: function(userId, doc) {
-// 		// Likewise
-// 		return true;
-// 	}
-// })
-
 // Define the schema 
 Courses.schema = new SimpleSchema({
 	name: {

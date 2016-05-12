@@ -2,9 +2,7 @@
 
 // Should link to course page
 
-// Checkbox should mark course as completed (greyed)
-
-// X should remove course from student's profile
+// Trashcan should remove course from student's profile
 
 import '../stylesheets/pure.css';
 import '../stylesheets/style.css';

@@ -8,6 +8,6 @@ Meteor.publish('courses', function() {
 });
 
 // Definately move away to own space
-Meteor.publish('users', function() {
-	return Meteor.users.find({});
-});
+// Meteor.publish('users', function() {
+// 	return Meteor.users.find({});
+// });
