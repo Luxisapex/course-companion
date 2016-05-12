@@ -10,13 +10,17 @@ import { Courses } from '../../api/courses/courses.js';
 
 import Course from './Course.jsx';
 
+
+import { addEducation } from '../../api/users/methods.js';
+
 export default class CourseList extends TrackerReact(React.Component) {
 
 	constructor() {
 		super();
 		this.state = {
 			subscription: {
-				courses: Meteor.subscribe('courses')
+				courses: Meteor.subscribe('courses'),
+				users: Meteor.subscribe('userData')
 			}
 		}
 	}
@@ -27,6 +31,13 @@ export default class CourseList extends TrackerReact(React.Component) {
 
 	courses() {
 		return Courses.find({}).fetch();
+	}
+
+	test() {
+		addEducation.call({
+			userId: Meteor.userId(),
+			education: 'I'
+		});
 	}
 
 	// Sums up all HP as well as render all courses, look over later
@@ -43,6 +54,7 @@ export default class CourseList extends TrackerReact(React.Component) {
 				{ Meteor.user() ?
 					<b className="sum-margin">{pointsSum}</b> : 'Does not display sum if not logged in'
 				}
+				<button onClick={this.test.bind(this)}></button>
 			</ul>
 		);
 	}
