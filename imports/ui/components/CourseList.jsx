@@ -1,6 +1,3 @@
-// State not even used right now??
-
-
 // Lists courses associated with a student
 
 import React from 'react';
@@ -20,27 +17,23 @@ export default class CourseList extends TrackerReact(React.Component) {
 		this.state = {
 			subscription: {
 				courses: Meteor.subscribe('courses'),
-				users: Meteor.subscribe('userData')
+				// users: Meteor.subscribe('userData'),
+				userCourses: Meteor.subscribe('userCourses')
 			}
 		}
 	}
 
 	componentWillUnmount() {
-	    this.state.subscription.courses.stop();  
+	    this.state.subscription.courses.stop();
+	    // this.state.subscription.users.stop();
+	    this.state.subscription.userCourses.stop();
 	}
 
 	courses() {
+		console.log(Meteor.users.find({}).fetch());
 		return Courses.find({}).fetch();
 	}
 
-	// test() {
-	// 	addEducation.call({
-	// 		userId: Meteor.userId(),
-	// 		education: 'I'
-	// 	});
-	// }
-
-	// Sums up all HP as well as render all courses, look over later
 	render() {
 		let pointsSum = 0;
 		return (

@@ -11,13 +11,17 @@ import '../../api/courses/server/publications.js';
 import '../../api/users/methods.js';
 import '../../api/users/server/publications.js';
 
-
+// Specifies more fields on accountCreation
 Accounts.onCreateUser(function(options, user) {
 	user.education = 'industriell ekonomi';
 	user.technical = 'datateknik';
 	user.master = 'strategi och styrning';
 
-	console.log(user);
+	user.courses = {};
+
+	if (options.profile) {
+    	user.profile = options.profile;
+	}
 
 	return user;
 });
