@@ -10,7 +10,6 @@ export const addEducation = new ValidatedMethod({
 		education: { type: String },
 	}).validator(),
 	run({ userId, education }) {
-		console.log(Meteor.users.find({}).fetch());
 		Meteor.users.update(userId, {
 			$set: {
 				education: education
@@ -18,6 +17,39 @@ export const addEducation = new ValidatedMethod({
 				upsert: true
 			}
 		);
-		console.log(Meteor.users.find({}).fetch());
+	}, 
+});
+
+export const addTech = new ValidatedMethod({
+	name: 'users.addTech',
+	validate: new SimpleSchema({
+		userId: { type: String },
+		tech: { type: String },
+	}).validator(),
+	run({ userId, tech }) {
+		Meteor.users.update(userId, {
+			$set: {
+				tech: tech
+			}}, {
+				upsert: true
+			}
+		);
+	}, 
+});
+
+export const addMaster = new ValidatedMethod({
+	name: 'users.addMaster',
+	validate: new SimpleSchema({
+		userId: { type: String },
+		master: { type: String },
+	}).validator(),
+	run({ userId, master }) {
+		Meteor.users.update(userId, {
+			$set: {
+				master: master
+			}}, {
+				upsert: true
+			}
+		);
 	}, 
 });

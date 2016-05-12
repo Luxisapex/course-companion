@@ -10,7 +10,7 @@ import { HomeLayout } from '../../ui/layouts/HomeLayout.jsx';
 import { MainLayout } from '../../ui/layouts/MainLayout.jsx';
 
 // Import all the components used in the routes
-import CourseList from '../../ui/components/CourseList.jsx';
+// import CourseList from '../../ui/components/CourseList.jsx';
 
 // Checks login/logout actions
 if(Meteor.isClient) {
@@ -43,8 +43,6 @@ FlowRouter.route('/', {
 FlowRouter.route('/main', {
 	name: 'main',
 	action() {
-		mount(MainLayout, {
-			content: (<CourseList />)
-		});
+		mount(MainLayout);
 	}
 });
