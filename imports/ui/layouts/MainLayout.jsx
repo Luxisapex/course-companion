@@ -16,5 +16,6 @@ export const MainLayout = ({content}) => (
 		{content}
 		<CourseList />
 		<InputField />
+		<SearchCourse />
 	</div>
 );

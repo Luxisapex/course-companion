@@ -71,7 +71,8 @@ export default class InputField extends TrackerReact(React.Component) {
 	render() {
 		return (
 			<div>
-				<input type="text" value={this.state.search} 
+				<p>InputField</p>
+				/*<input type="text" value={this.state.search} 
 					onChange={this.updateSearch.bind(this)} />
 				<ul>	
 						
@@ -85,7 +86,7 @@ export default class InputField extends TrackerReact(React.Component) {
 						})}
 
 						
-				</ul>
+				</ul>*/
 			</div>
 
 		);
