@@ -27,7 +27,7 @@ export default class CourseList extends TrackerReact(React.Component) {
 	}
 
 	courses() {
-		console.log(Meteor.user().courses);
+		console.log(Meteor.user());
 		return Courses.find({}).fetch();
 	}
 

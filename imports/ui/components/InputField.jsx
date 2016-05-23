@@ -34,26 +34,18 @@ export default class InputField extends TrackerReact(React.Component) {
 				userId: Meteor.userId(),
 				master: text
 			});
-			this.refs.input.placeholder = '';
 		} else if (user.education) {
 			addTech.call({
 				userId: Meteor.userId(),
 				tech: text
-			});
-			this.refs.input.placeholder = 'master';
-		} else {
+			});		} else {
 			addEducation.call({
 				userId: Meteor.userId(),
 				education: text
 			});
-			this.refs.input.placeholder = 'tech';
 		}
 		this.refs.input.value = "";
 	}
-
-	updateSearch(event) {
-		this.setState({search: event.target.value.substr(0, 20)})
-	}	
 
 	courses() {
 		return Courses.find({}).fetch();
@@ -63,23 +55,13 @@ export default class InputField extends TrackerReact(React.Component) {
 		if(this.state.subscription.user.ready()) {
 			let user = this.state.subscription.user;
 			if(user.master) {
-				// this.state = {
-				// 	currentInput: ''
-				// }
 				this.refs.input.hidden = true;
 			} else if (user.tech) {
-				this.state = {
-					currentInput: 'master'
-				}
+				this.refs.input.placeholder = 'Master profile';
 			} else if (user.education) {
-				// this.state = {
-				// 	currentInput: 'tech'
-				// }
-				this.refs.input.placeholder = 'tech';
+				this.refs.input.placeholder = 'Technical specialization';
 			} else {
-				this.state = {
-					currentInput: 'edu'
-				}
+				this.refs.input.placeholder = 'Education';
 			}
 		}
 
