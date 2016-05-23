@@ -3,46 +3,22 @@
 import React from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
+//Importing these two for trying courses with search bar
+import { Courses } from '../../api/courses/courses.js';
+
+import Course from './Course.jsx';
+//
+
 import { addEducation, addTech, addMaster } from '../../api/users/methods.js';
 
 export default class InputField extends TrackerReact(React.Component) {
-
-	// State depends on what user has input so far. Edu > Tech > Master > None
-	// constructor() {
-	// 	super();
-
-	// 	// this.state = {
-	// 	// 	subscription: {
-	// 	// 		users: Meteor.subscribe('userData')
-	// 	// 	}
-	// 	// }
-
-	// 	if(Meteor.user().master) {
-	// 		this.state = {
-	// 			currentInput: ''
-	// 		}
-	// 	} else if (Meteor.user().tech) {
-	// 		this.state = {
-	// 			currentInput: 'master'
-	// 		}
-	// 	} else if (Meteor.user().education) {
-	// 		this.state = {
-	// 			currentInput: 'tech'
-	// 		}
-	// 	} else {
-	// 		this.state = {
-	// 			currentInput: 'edu'
-	// 		}
-	// 	}
-	// }
-
 	constructor() {
 		super();
 		this.state = {
 			subscription: {
-				user: Meteor.subscribe('userData')
+				user: Meteor.subscribe('user')
 			}
-		}
+		};
 	}
 
 	handleInput(event) {
@@ -71,25 +47,17 @@ export default class InputField extends TrackerReact(React.Component) {
 				education: text
 			});
 			this.refs.input.placeholder = 'tech';
-			console.log(this.refs.input.placeholder);
 		}
-
-
-
-		// addEducation.call({
-		// 	userId: Meteor.userId(),
-		// 	education: text
-		// });
-
 		this.refs.input.value = "";
-		
-		// Next input (dynamic somehow)
-		// this.state.currentInput = 'tech';
-		// this.refs.input.placeholder = this.state.currentInput;
-		// this.refs.input.placeholder = "...";
 	}
 
-	
+	updateSearch(event) {
+		this.setState({search: event.target.value.substr(0, 20)})
+	}	
+
+	courses() {
+		return Courses.find({}).fetch();
+	}
 
 	render() {
 		if(this.state.subscription.user.ready()) {
@@ -116,13 +84,10 @@ export default class InputField extends TrackerReact(React.Component) {
 		}
 
 		return (
-			<form onSubmit={this.handleInput.bind(this)}> 
-				<input
-					type="text"
-					ref="input"
-					placeholder={this.state.currentInput}
-				/>
-			</form>
+			<div>
+				
+			</div>
+
 		);
 	}
 };
