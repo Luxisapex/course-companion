@@ -84,10 +84,13 @@ export default class InputField extends TrackerReact(React.Component) {
 		}
 
 		return (
-			<div>
-				
-			</div>
-
+			<form onSubmit={this.handleInput.bind(this)}> 
+				<input
+					type="text"
+					ref="input"
+					placeholder={this.state.currentInput}
+				/>
+			</form>
 		);
 	}
 };
