@@ -1,5 +1,4 @@
-// Takes input data and does something
-// Should take different shape depending on expected input
+// Bit messy, clean up
 
 import React from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
@@ -37,21 +36,30 @@ export default class InputField extends TrackerReact(React.Component) {
 	// 	}
 	// }
 
+	constructor() {
+		super();
+		this.state = {
+			subscription: {
+				user: Meteor.subscribe('userData')
+			}
+		}
+	}
+
 	handleInput(event) {
 		event.preventDefault();
 		
 		let text = this.refs.input.value.trim();
+		let user = Meteor.user();
 
-
-		if(Meteor.user().master) {
+		if(user.master) {
 			
-		} else if (Meteor.user().tech) {
+		} else if (user.tech) {
 			addMaster.call({
 				userId: Meteor.userId(),
 				master: text
 			});
 			this.refs.input.placeholder = '';
-		} else if (Meteor.user().education) {
+		} else if (user.education) {
 			addTech.call({
 				userId: Meteor.userId(),
 				tech: text
@@ -63,6 +71,7 @@ export default class InputField extends TrackerReact(React.Component) {
 				education: text
 			});
 			this.refs.input.placeholder = 'tech';
+			console.log(this.refs.input.placeholder);
 		}
 
 
@@ -80,24 +89,32 @@ export default class InputField extends TrackerReact(React.Component) {
 		// this.refs.input.placeholder = "...";
 	}
 
+	
+
 	render() {
-		if(Meteor.user().master) {
-			this.state = {
-				currentInput: ''
-			}
-		} else if (Meteor.user().tech) {
-			this.state = {
-				currentInput: 'master'
-			}
-		} else if (Meteor.user().education) {
-			this.state = {
-				currentInput: 'tech'
-			}
-		} else {
-			this.state = {
-				currentInput: 'edu'
+		if(this.state.subscription.user.ready()) {
+			let user = this.state.subscription.user;
+			if(user.master) {
+				// this.state = {
+				// 	currentInput: ''
+				// }
+				this.refs.input.hidden = true;
+			} else if (user.tech) {
+				this.state = {
+					currentInput: 'master'
+				}
+			} else if (user.education) {
+				// this.state = {
+				// 	currentInput: 'tech'
+				// }
+				this.refs.input.placeholder = 'tech';
+			} else {
+				this.state = {
+					currentInput: 'edu'
+				}
 			}
 		}
+
 		return (
 			<form onSubmit={this.handleInput.bind(this)}> 
 				<input

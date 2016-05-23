@@ -5,10 +5,9 @@ import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
 import { Courses } from '../../api/courses/courses.js';
 
+// import { Users } from '../../api/users/users.js';
+
 import Course from './Course.jsx';
-
-
-import { addEducation } from '../../api/users/methods.js';
 
 export default class CourseList extends TrackerReact(React.Component) {
 
@@ -17,20 +16,18 @@ export default class CourseList extends TrackerReact(React.Component) {
 		this.state = {
 			subscription: {
 				courses: Meteor.subscribe('courses'),
-				// users: Meteor.subscribe('userData'),
-				userCourses: Meteor.subscribe('userCourses')
+				// user: Meteor.subscribe('userData')
 			}
 		}
 	}
 
 	componentWillUnmount() {
 	    this.state.subscription.courses.stop();
-	    // this.state.subscription.users.stop();
-	    this.state.subscription.userCourses.stop();
+	    // this.state.subscription.user.stop();
 	}
 
 	courses() {
-		console.log(Meteor.users.find({}).fetch());
+		console.log(Meteor.user().courses);
 		return Courses.find({}).fetch();
 	}
 
