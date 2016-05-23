@@ -6,8 +6,3 @@ import { Courses } from '../courses.js';
 Meteor.publish('courses', function() {
 	return Courses.find({});
 });
-
-// Definately move away to own space
-// Meteor.publish('users', function() {
-// 	return Meteor.users.find({});
-// });

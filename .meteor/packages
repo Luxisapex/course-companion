@@ -22,6 +22,7 @@ meteortoys:allthings
 aldeed:simple-schema
 aldeed:collection2
 ultimatejs:tracker-react
+accounts-base
 accounts-ui
 accounts-password
 gwendall:auth-client-callbacks

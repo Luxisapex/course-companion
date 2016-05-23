@@ -1,5 +1,4 @@
-// Takes input data and does something
-// Should take different shape depending on expected input
+// Bit messy, clean up
 
 import React from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
@@ -16,7 +15,9 @@ export default class InputField extends TrackerReact(React.Component) {
 	constructor() {
 		super();
 		this.state = {
-			search: 'TEIE17'
+			subscription: {
+				user: Meteor.subscribe('user')
+			}
 		};
 	}
 
@@ -24,17 +25,17 @@ export default class InputField extends TrackerReact(React.Component) {
 		event.preventDefault();
 		
 		let text = this.refs.input.value.trim();
+		let user = Meteor.user();
 
-
-		if(Meteor.user().master) {
+		if(user.master) {
 			
-		} else if (Meteor.user().tech) {
+		} else if (user.tech) {
 			addMaster.call({
 				userId: Meteor.userId(),
 				master: text
 			});
 			this.refs.input.placeholder = '';
-		} else if (Meteor.user().education) {
+		} else if (user.education) {
 			addTech.call({
 				userId: Meteor.userId(),
 				tech: text
@@ -47,48 +48,42 @@ export default class InputField extends TrackerReact(React.Component) {
 			});
 			this.refs.input.placeholder = 'tech';
 		}
-
-
-
-
 		this.refs.input.value = "";
-		
 	}
 
-	updateSearch(event) {
-		this.setState({search: event.target.value.substr(0, 20)})
-	}	
-
-	courses() {
-		return Courses.find({}).fetch();
-	}
-
-	coursesSelected() {
-		console.log(this.state.search);
-		return Courses.find({code: this.state.search.toUpperCase()});
-	}
 
 	render() {
+		if(this.state.subscription.user.ready()) {
+			let user = this.state.subscription.user;
+			if(user.master) {
+				// this.state = {
+				// 	currentInput: ''
+				// }
+				this.refs.input.hidden = true;
+			} else if (user.tech) {
+				this.state = {
+					currentInput: 'master'
+				}
+			} else if (user.education) {
+				// this.state = {
+				// 	currentInput: 'tech'
+				// }
+				this.refs.input.placeholder = 'tech';
+			} else {
+				this.state = {
+					currentInput: 'edu'
+				}
+			}
+		}
+
 		return (
-			<div>
-				<p>InputField</p>
-				/*<input type="text" value={this.state.search} 
-					onChange={this.updateSearch.bind(this)} />
-				<ul>	
-						
-						{console.log(this.state)}
-
-
-						{Meteor.user().master}
-						{this.state.currentInput}
-						{this.coursesSelected().map((course) => {
-							return <Course key={course._id} course={course} />
-						})}
-
-						
-				</ul>*/
-			</div>
-
+			<form onSubmit={this.handleInput.bind(this)}> 
+				<input
+					type="text"
+					ref="input"
+					placeholder={this.state.currentInput}
+				/>
+			</form>
 		);
 	}
 };

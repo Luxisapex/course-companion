@@ -11,7 +11,7 @@ export default class AccountsUIWrapper extends Component {
 	}
 
 	componentWillUnmount() {
-	    Blaze.remove(this.view);  
+	    Blaze.remove(this.view);
 	}
 	
 	render() {
