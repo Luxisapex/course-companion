@@ -38,7 +38,8 @@ export default class InputField extends TrackerReact(React.Component) {
 			addTech.call({
 				userId: Meteor.userId(),
 				tech: text
-			});		} else {
+			});
+		} else {
 			addEducation.call({
 				userId: Meteor.userId(),
 				education: text
@@ -47,13 +48,13 @@ export default class InputField extends TrackerReact(React.Component) {
 		this.refs.input.value = "";
 	}
 
-	courses() {
-		return Courses.find({}).fetch();
-	}
+	// courses() {
+	// 	return Courses.find({}).fetch();
+	// }
 
 	render() {
 		if(this.state.subscription.user.ready()) {
-			let user = this.state.subscription.user;
+			let user = Meteor.user();
 			if(user.master) {
 				this.refs.input.hidden = true;
 			} else if (user.tech) {
