@@ -12,6 +12,7 @@ import Course from './Course.jsx';
 import { addEducation, addTech, addMaster } from '../../api/users/methods.js';
 
 export default class InputField extends TrackerReact(React.Component) {
+	// Needed to make sure reloading works
 	constructor() {
 		super();
 		this.state = {

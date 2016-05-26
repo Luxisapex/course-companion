@@ -33,9 +33,3 @@ Courses.schema = new SimpleSchema({
 
 // Attach the schema to the collection
 Courses.attachSchema(Courses.schema);
-
-// Not sure. Seems to be beneficial. See Meteor 1.3 todos example and try to remove this if not used (again, I dont really know)
-Courses.publicFields = {
-	name: 1,
-	code: 1,
-};

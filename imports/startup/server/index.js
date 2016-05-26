@@ -36,7 +36,7 @@ Meteor.startup(() => {
 			{
 				name: "Ekonomisk grundkurs",
 				code: "TEIE17",
-				points: 8
+				points: 8,
 			},
 			{
 				name: "Matematisk grundkurs",
