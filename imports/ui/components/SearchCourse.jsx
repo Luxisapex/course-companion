@@ -28,7 +28,6 @@ export default class SearchCourse extends React.Component {
 	//Using the state.search variable to look through the database
 	//on both code and name to return the courses that match
 	courses() {
-		console.log(this.state.search);
 		return Courses.find({ "$or": [
 			{"code": {$regex : this.state.search.toUpperCase()}},
 			{"name": {$regex : new RegExp(this.state.search, "i")}}

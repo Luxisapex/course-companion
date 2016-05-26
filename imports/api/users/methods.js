@@ -3,6 +3,8 @@ import { Meteor } from 'meteor/meteor';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
+import { Courses } from '../courses/courses.js';
+
 export const addEducation = new ValidatedMethod({
 	name: 'users.addEducation',
 	validate: new SimpleSchema({
@@ -47,6 +49,23 @@ export const addMaster = new ValidatedMethod({
 		Meteor.users.update(userId, {
 			$set: {
 				master: master
+			}}, {
+				upsert: true
+			}
+		);
+	}, 
+});
+
+export const addCourse = new ValidatedMethod({
+	name: 'users.addCourse',
+	validate: new SimpleSchema({
+		userId: { type: String },
+		courses: { type: [String] },
+	}).validator(),
+	run({ userId, courses }) {
+		Meteor.users.upsert(userId, {
+			$push: {
+				courses: courses
 			}}, {
 				upsert: true
 			}
