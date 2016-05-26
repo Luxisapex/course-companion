@@ -33,7 +33,7 @@ Meteor.startup(() => {
 	// Make sure no login keys persist over server restart
 	Meteor.users.update({}, {$set : { "services.resume.loginTokens" : [] }}, {multi:true});
 	// Fill Courses DB with this data if empty
-	if (Educations.find().count() === 0) {
+	// if (Educations.find().count() === 0) {
 		const data = [
 			{
 				name: "Ekonomisk grundkurs",
@@ -100,5 +100,5 @@ Meteor.startup(() => {
 		// 		points: listing.points
 		// 	});
 		// });
-	}
+	// }
 });

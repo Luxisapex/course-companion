@@ -31,5 +31,8 @@ Courses.schema = new SimpleSchema({
 	}
 });
 
+// Export for use in education
+export const Course = Courses.schema;
+
 // Attach the schema to the collection
 Courses.attachSchema(Courses.schema);
