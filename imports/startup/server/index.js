@@ -1,13 +1,15 @@
 import { Meteor } from 'meteor/meteor';
-// import { AccountsServer } from 'meteor/accounts-base';
 
-// Import Collections (pieces of the DB) and its publications
+// Maybe also/instead import educations later?
 import {Courses} from '../../api/courses/courses.js';
+import {Educations} from '../../api/educations/educations.js';
 
 import '../../api/courses/methods.js';
 import '../../api/courses/server/publications.js';
 
-// import later when using
+import '../../api/educations/methods.js';
+import '../../api/educations/server/publications.js';
+
 import '../../api/users/methods.js';
 import '../../api/users/server/publications.js';
 
@@ -31,7 +33,7 @@ Meteor.startup(() => {
 	// Make sure no login keys persist over server restart
 	Meteor.users.update({}, {$set : { "services.resume.loginTokens" : [] }}, {multi:true});
 	// Fill Courses DB with this data if empty
-	if (Courses.find().count() === 0) {
+	if (Educations.find().count() === 0) {
 		const data = [
 			{
 				name: "Ekonomisk grundkurs",
@@ -80,12 +82,23 @@ Meteor.startup(() => {
 			}
 		];
 
-		data.forEach((listing) => {
-			Courses.insert({
-				name: listing.name,
-				code: listing.code,
-				points: listing.points
-			});
+		const education = {
+			name: "Industriell Ekonomi",
+			nickname: "I"
+		}
+
+		Educations.insert({
+			name: education.name,
+			nickname: education.nickname,
+			mandatoryCourses: data
 		});
+
+		// data.forEach((listing) => {
+		// 	Courses.insert({
+		// 		name: listing.name,
+		// 		code: listing.code,
+		// 		points: listing.points
+		// 	});
+		// });
 	}
 });
