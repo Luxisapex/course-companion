@@ -15,18 +15,14 @@ import { addCourse } from '../../api/users/methods.js';
 
 import React from 'react';
 
-export default class Course extends React.Component {
-
-	removeCourse() {
-			deleteCourse.call({
-			courseId: this.props.course._id
-		});
-	}
-
-	toggleChecked() {
-		toggleFinished.call({
-			courseId: this.props.course._id,
-			currentState: this.props.course.finished
+export default class SearchableCourse extends React.Component {
+	
+	addCourse() {
+		console.log("Added the course")
+		console.log(this.props.course);
+		addCourse.call({
+				userId: Meteor.userId(),
+				courses: [this.props.course.name, this.props.course.code]
 		});
 	}
 
@@ -39,14 +35,8 @@ export default class Course extends React.Component {
 				<a className="pure-u-1-12" href="/main">{this.props.course.code}</a>
 				<span className="pure-u-1-24">{this.props.course.points}</span>
 				<span className="pure-u-1-8">{this.props.course.name}</span>
-				<input className="pure-u-1-24" 
-					type="checkbox"
-					readOnly={true}
-					checked={this.props.course.finished}
-					onClick={this.toggleChecked.bind(this)}
-				/>
-				<a className="pure-u-1-24" href="" onClick={this.removeCourse.bind(this)}>
-					<i className="fa fa-trash" aria-hidden="true"></i>
+				<a className="pure-u-1-24" href="" onClick={this.addCourse.bind(this)}>
+					<i className="fa fa-plus" aria-hidden="true"></i>
 				</a>
 			</li>
 		);

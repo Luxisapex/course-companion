@@ -4,7 +4,7 @@
 import React from 'react';
 
 import { Courses } from '../../api/courses/courses.js';
-import Course from './Course.jsx';
+import Course from './SearchableCourse.jsx';
 
 export default class SearchCourse extends React.Component {
 

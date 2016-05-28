@@ -1,5 +1,8 @@
 # Feauters to be implemented
 
+##Fixes
+Create a class that SearchableCourse and UserCourse can inherit from
+
 ## Functionality
 * make courses subdocuments in educations, not just objects
 * extend course.jsx to fit search AND normal display with different artifacts
