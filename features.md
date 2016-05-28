@@ -1,5 +1,8 @@
 # Feauters to be implemented
 
+##Fixes
+Create a class that SearchableCourse and UserCourse can inherit from
+
 ## Functionality
 * sum up all hp, also for different "inriktningar"
 * give courses "en/flera inriktining/ar" possible as an array
