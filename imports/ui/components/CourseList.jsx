@@ -3,9 +3,8 @@
 import React from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
+import { Educations } from '../../api/educations/educations.js';
 import { Courses } from '../../api/courses/courses.js';
-
-// import { Users } from '../../api/users/users.js';
 
 import Course from './Course.jsx';
 
@@ -15,6 +14,7 @@ export default class CourseList extends TrackerReact(React.Component) {
 		super();
 		this.state = {
 			subscription: {
+				educations: Meteor.subscribe('educations'),
 				courses: Meteor.subscribe('courses'),
 				user: Meteor.subscribe('user')
 			}
@@ -29,7 +29,6 @@ export default class CourseList extends TrackerReact(React.Component) {
 	courses() {
 		// Problem on refres
 		if(this.state.subscription.user.ready())
-			console.log(Meteor.user().courses);
 			return Meteor.user().courses;
 		return [];
 	}
@@ -43,7 +42,7 @@ export default class CourseList extends TrackerReact(React.Component) {
 						if(course.finished) {
 							pointsSum += course.points;
 						}
-						return <Course key={course._id} course={course} />
+						return <Course key={course.code} course={course} />
 					})
 				}
 				{ Meteor.user() ?

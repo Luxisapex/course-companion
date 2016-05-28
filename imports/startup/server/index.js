@@ -33,20 +33,18 @@ Meteor.startup(() => {
 	// Make sure no login keys persist over server restart
 	Meteor.users.update({}, {$set : { "services.resume.loginTokens" : [] }}, {multi:true});
 	// Fill DB with this data if empty
-	// if (Educations.find().count() === 0) {
+	if (Educations.find().count() === 0) {
 		const data = [
 			{
 				name: 'Industriell Ekonomi',
 				nickname: 'I',
 				courses: [
 					{
-						_id: "1",
 						name: "Ekonomisk grundkurs",
 						code: "TEIE17",
 						points: 8,
 					},
 					{
-						_id: "3",
 						name: "Matematisk grundkurs",
 						code: "TATA31",
 						points: 8
@@ -58,13 +56,11 @@ Meteor.startup(() => {
 				nickname: 'Y',
 				courses: [
 					{
-						_id: "2",
 						name: "Fysiologisk grundkurs",
 						code: "TFAE12",
 						points: 8,
 					},
 					{
-						_id: "4",
 						name: "Matematisk grundkurs",
 						code: "TATA31",
 						points: 8
@@ -107,13 +103,21 @@ Meteor.startup(() => {
 			// 	points: 6
 			// }
 		];
-		// Inserts data
+		// Inserts dat
 		data.forEach((education) => {
-			const educationId = Educations.insert({
+			
+			let mandatoryCourses = [];
+
+			education.courses.forEach((course) => {
+				mandatoryCourses.push(course);
+			});
+			console.log(mandatoryCourses);
+
+			Educations.insert({
 				name: education.name,
 				nickname: education.nickname,
-				mandatoryCourses: education.courses
+				mandatoryCourses: mandatoryCourses
 			});
 		});
-	// }
+	}
 });

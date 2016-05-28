@@ -62,7 +62,6 @@ export const refreshCourses = new ValidatedMethod({
 	}).validator(),
 	run({ userId }) {
 		let education = Meteor.users.findOne(userId).education;
-		console.log(education.mandatoryCourses);
 		Meteor.users.update(userId, {
 			$set: {
 				courses: education.mandatoryCourses

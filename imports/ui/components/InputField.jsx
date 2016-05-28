@@ -47,11 +47,16 @@ export default class InputField extends TrackerReact(React.Component) {
 			});
 		}
 
+		this.refs.input.value = "";
+	}
+
+	// Temporary solution to do async
+	handleButton(event) {
+		event.preventDefault();
+		
 		refreshCourses.call({
 			userId: Meteor.userId()
 		});
-
-		this.refs.input.value = "";
 	}
 
 	render() {
@@ -73,6 +78,12 @@ export default class InputField extends TrackerReact(React.Component) {
 				<input
 					type="text"
 					ref="input"
+				/>
+				<input
+					type="button"
+					ref="button"
+					value="Update courses"
+					onClick={this.handleButton.bind(this)}
 				/>
 			</form>
 		);
