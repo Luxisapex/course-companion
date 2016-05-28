@@ -5,6 +5,8 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 import { Courses } from '../courses/courses.js';
 
+import { Educations } from '../educations/educations.js';
+
 export const addEducation = new ValidatedMethod({
 	name: 'users.addEducation',
 	validate: new SimpleSchema({
@@ -14,24 +16,22 @@ export const addEducation = new ValidatedMethod({
 	run({ userId, education }) {
 		Meteor.users.update(userId, {
 			$set: {
-				education: education
-			}}, {
-				upsert: true
+				education: Educations.findOne({name: education})
 			}
-		);
+		});
 	}, 
 });
 
-export const addTech = new ValidatedMethod({
-	name: 'users.addTech',
+export const addTechnical = new ValidatedMethod({
+	name: 'users.addTechnical',
 	validate: new SimpleSchema({
 		userId: { type: String },
-		tech: { type: String },
+		technical: { type: String },
 	}).validator(),
-	run({ userId, tech }) {
+	run({ userId, technical }) {
 		Meteor.users.update(userId, {
 			$set: {
-				tech: tech
+				technical: technical
 			}}, {
 				upsert: true
 			}
@@ -72,3 +72,30 @@ export const addCourse = new ValidatedMethod({
 		);
 	}, 
 });
+
+// Intended to make the users courses correspond to the mandatory of education
+export const refreshCourses = new ValidatedMethod({
+	name: 'users.refreshCourses',
+	validate: new SimpleSchema({
+		userId: { type: String },
+	}).validator(),
+	run({ userId }) {
+		let education = Meteor.users.findOne(userId).education;
+		Meteor.users.update(userId, {
+			$set: {
+				courses: education.mandatoryCourses
+			}
+		});
+	}
+});
+
+// For internal calls
+// function refreshCourses(userId) {
+// 	console.log(Meteor.users.findOne(userId));
+// 	let education = Meteor.users.findOne(userId).education;
+// 	Meteor.users.update(userId, {
+// 		$set: {
+// 			courses: education.mandatoryCourses
+// 		}
+// 	});
+// }

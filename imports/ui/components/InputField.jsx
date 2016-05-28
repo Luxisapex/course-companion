@@ -9,7 +9,7 @@ import { Courses } from '../../api/courses/courses.js';
 import Course from './Course.jsx';
 //
 
-import { addEducation, addTech, addMaster } from '../../api/users/methods.js';
+import { addEducation, addTechnical, addMaster, refreshCourses } from '../../api/users/methods.js';
 
 export default class InputField extends TrackerReact(React.Component) {
 	// Needed to make sure reloading works
@@ -30,15 +30,15 @@ export default class InputField extends TrackerReact(React.Component) {
 
 		if(user.master) {
 			
-		} else if (user.tech) {
+		} else if (user.technical) {
 			addMaster.call({
 				userId: Meteor.userId(),
 				master: text
 			});
 		} else if (user.education) {
-			addTech.call({
+			addTechnical.call({
 				userId: Meteor.userId(),
-				tech: text
+				technical: text
 			});
 		} else {
 			addEducation.call({
@@ -46,19 +46,25 @@ export default class InputField extends TrackerReact(React.Component) {
 				education: text
 			});
 		}
+
 		this.refs.input.value = "";
 	}
 
-	// courses() {
-	// 	return Courses.find({}).fetch();
-	// }
+	// Temporary solution to do async
+	handleButton(event) {
+		event.preventDefault();
+		
+		refreshCourses.call({
+			userId: Meteor.userId()
+		});
+	}
 
 	render() {
 		if(this.state.subscription.user.ready()) {
 			let user = Meteor.user();
 			if(user.master) {
 				this.refs.input.hidden = true;
-			} else if (user.tech) {
+			} else if (user.technical) {
 				this.refs.input.placeholder = 'Master profile';
 			} else if (user.education) {
 				this.refs.input.placeholder = 'Technical specialization';
@@ -72,7 +78,12 @@ export default class InputField extends TrackerReact(React.Component) {
 				<input
 					type="text"
 					ref="input"
-					placeholder={this.state.currentInput}
+				/>
+				<input
+					type="button"
+					ref="button"
+					value="Update courses"
+					onClick={this.handleButton.bind(this)}
 				/>
 			</form>
 		);
