@@ -60,16 +60,15 @@ export const addCourse = new ValidatedMethod({
 	name: 'users.addCourse',
 	validate: new SimpleSchema({
 		userId: { type: String },
-		courses: { type: [String] },
+		courseId: { type: String },
 	}).validator(),
-	run({ userId, courses }) {
-		Meteor.users.upsert(userId, {
+	run({ userId, courseId }) {
+		let course = Courses.findOne({code: courseId});
+		Meteor.users.update(userId, {
 			$push: {
-				courses: courses
-			}}, {
-				upsert: true
+				courses: course
 			}
-		);
+		});
 	}, 
 });
 
