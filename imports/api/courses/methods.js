@@ -8,24 +8,48 @@ import { Courses } from './courses.js';
 export const toggleFinished = new ValidatedMethod({
 	name: 'course.toggleFinished',
 	validate: new SimpleSchema({
+		userId: { type: String },
 		courseId: { type: String },
 		currentState: { type: Boolean },
 	}).validator(),
-	run({ courseId, currentState }) {
-		Courses.update({code: courseId}, {
-			$set: {
-				finished: !currentState
+	run({ userId, courseId, currentState }) {
+		Meteor.users.update(
+			{ 
+				'_id': userId, 'courses': {
+					'$elemMatch': {
+						code: courseId
+					}
+				} 
+			}, 
+			{
+				'$set': 
+				{
+					'courses.$.finished': !currentState
+				}
 			}
-		});
+		);
 	}, 
 });
 
 export const deleteCourse = new ValidatedMethod({
 	name: 'courses.deleteCourse',
 	validate: new SimpleSchema({
+		userId: { type: String },
 		courseId: { type: String },
 	}).validator(),
-	run({courseId}) {
-		Courses.remove({code: courseId});
+	run({ userId, courseId}) {
+		Meteor.users.update(
+			{
+				'_id': userId
+			},
+			{
+				'$pull':
+				{
+					'courses': {
+						'code': courseId
+					}
+				}
+			}
+		);
 	},
 });

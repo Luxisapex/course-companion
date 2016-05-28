@@ -19,6 +19,7 @@ export default class Course extends React.Component {
 
 	removeCourse() {
 		deleteCourse.call({
+			userId: Meteor.userId(),
 			courseId: this.props.course.code
 		});
 	}
@@ -34,7 +35,7 @@ export default class Course extends React.Component {
 
 	toggleChecked() {
 		toggleFinished.call({
-			// userId: Meteor.userId(),
+			userId: Meteor.userId(),
 			courseId: this.props.course.code,
 			currentState: this.props.course.finished
 		});
