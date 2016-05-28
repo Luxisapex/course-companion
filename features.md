@@ -1,6 +1,8 @@
 # Feauters to be implemented
 
 ## Functionality
+* make courses subdocuments in educations, not just objects
+* extend course.jsx to fit search AND normal display with different artifacts
 * sum up all hp, also for different "inriktningar"
 * give courses "en/flera inriktining/ar" possible as an array
 * Start with indek, data, strategí and show all O-courses.

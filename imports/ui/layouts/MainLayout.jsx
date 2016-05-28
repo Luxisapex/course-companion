@@ -18,10 +18,4 @@ export const MainLayout = ({content}) => (
 		<SearchCourse />
 	</div>
 );
-
-
-		// <AccountsUIWrapper />
-		// <Navbar />
-
-		// <InputField />
-		// <SearchCourse />
+	// <Navbar />
