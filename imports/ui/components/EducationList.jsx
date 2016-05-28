@@ -34,8 +34,10 @@ export default class EducationList extends TrackerReact(React.Component) {
 		return (
 			<ul className="courses">
 				{this.educations().map((education)=> {
-					console.log(education);
-					return education.name;
+					education.mandatoryCourses.map((course) => {
+						return <li>{course.name}</li>;
+					});
+					return <li>{education.name}</li>;
 				})}
 				{ Meteor.user() ?
 					<b className="sum-margin">{pointsSum}</b> : 'Does not display sum if not logged in'

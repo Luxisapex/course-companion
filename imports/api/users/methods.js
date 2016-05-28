@@ -20,16 +20,16 @@ export const addEducation = new ValidatedMethod({
 	}, 
 });
 
-export const addTech = new ValidatedMethod({
-	name: 'users.addTech',
+export const addTechnical = new ValidatedMethod({
+	name: 'users.addTechnical',
 	validate: new SimpleSchema({
 		userId: { type: String },
-		tech: { type: String },
+		technical: { type: String },
 	}).validator(),
-	run({ userId, tech }) {
+	run({ userId, technical }) {
 		Meteor.users.update(userId, {
 			$set: {
-				tech: tech
+				technical: technical
 			}}, {
 				upsert: true
 			}

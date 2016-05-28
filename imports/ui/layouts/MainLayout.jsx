@@ -14,6 +14,7 @@ export const MainLayout = ({content}) => (
 	<div className="main-layout">
 		{content}
 		<EducationList />
+		<InputField />
 	</div>
 );
 
