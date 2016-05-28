@@ -15,6 +15,7 @@ export const MainLayout = ({content}) => (
 		<AccountsUIWrapper />
 		<CourseList />
 		<InputField />
+		<SearchCourse />
 	</div>
 );
 
