@@ -17,29 +17,30 @@ import React from 'react';
 
 export default class Course extends React.Component {
 
-		removeCourse() {
-			deleteCourse.call({
-			courseId: this.props.course._id
+	removeCourse() {
+		deleteCourse.call({
+			courseId: this.props.course.code
 		});
 	}
+
 	addCourse() {
 		console.log("Added the course")
 		console.log(this.props.course);
 		addCourse.call({
-				userId: Meteor.userId(),
-				courses: [this.props.course.name, this.props.course.code]
+			userId: Meteor.userId(),
+			courses: [this.props.course.name, this.props.course.code]
 		});
 	}
 
 	toggleChecked() {
 		toggleFinished.call({
-			courseId: this.props.course._id,
+			// userId: Meteor.userId(),
+			courseId: this.props.course.code,
 			currentState: this.props.course.finished
 		});
 	}
 
 	render() {
-
 		const courseClass = this.props.course.finished ? "pure-g checked" : "pure-g";
 
 		return (

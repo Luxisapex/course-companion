@@ -6,7 +6,6 @@ import React from 'react';
 import AccountsUIWrapper from '../components/AccountsUIWrapper.jsx';
 import Navbar from '../components/Navbar.jsx';
 import CourseList from '../components/CourseList.jsx';
-import EducationList from '../components/EducationList.jsx';
 import InputField from '../components/InputField.jsx';
 import SearchCourse from '../components/SearchCourse.jsx';
 

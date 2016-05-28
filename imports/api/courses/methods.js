@@ -12,7 +12,7 @@ export const toggleFinished = new ValidatedMethod({
 		currentState: { type: Boolean },
 	}).validator(),
 	run({ courseId, currentState }) {
-		Courses.update(courseId, {
+		Courses.update({code: courseId}, {
 			$set: {
 				finished: !currentState
 			}
@@ -26,6 +26,6 @@ export const deleteCourse = new ValidatedMethod({
 		courseId: { type: String },
 	}).validator(),
 	run({courseId}) {
-		Courses.remove({_id: courseId});
+		Courses.remove({code: courseId});
 	},
 });
