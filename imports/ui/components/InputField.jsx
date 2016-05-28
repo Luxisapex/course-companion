@@ -9,7 +9,7 @@ import { Courses } from '../../api/courses/courses.js';
 import Course from './Course.jsx';
 //
 
-import { addEducation, addTechnical, addMaster } from '../../api/users/methods.js';
+import { addEducation, addTechnical, addMaster, refreshCourses } from '../../api/users/methods.js';
 
 export default class InputField extends TrackerReact(React.Component) {
 	// Needed to make sure reloading works
@@ -46,6 +46,11 @@ export default class InputField extends TrackerReact(React.Component) {
 				education: text
 			});
 		}
+
+		refreshCourses.call({
+			userId: Meteor.userId()
+		});
+
 		this.refs.input.value = "";
 	}
 
@@ -68,7 +73,6 @@ export default class InputField extends TrackerReact(React.Component) {
 				<input
 					type="text"
 					ref="input"
-					placeholder={this.state.currentInput}
 				/>
 			</form>
 		);

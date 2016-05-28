@@ -12,14 +12,11 @@ export const addEducation = new ValidatedMethod({
 		education: { type: String },
 	}).validator(),
 	run({ userId, education }) {
-		console.log(this);
 		Meteor.users.update(userId, {
 			$set: {
 				education: Educations.findOne({name: education})
-			}}, {
-				upsert: true
 			}
-		);
+		});
 	}, 
 });
 
@@ -56,3 +53,31 @@ export const addMaster = new ValidatedMethod({
 		);
 	}, 
 });
+
+// Intended to make the users courses correspond to the mandatory of education
+export const refreshCourses = new ValidatedMethod({
+	name: 'users.refreshCourses',
+	validate: new SimpleSchema({
+		userId: { type: String },
+	}).validator(),
+	run({ userId }) {
+		let education = Meteor.users.findOne(userId).education;
+		console.log(education.mandatoryCourses);
+		Meteor.users.update(userId, {
+			$set: {
+				courses: education.mandatoryCourses
+			}
+		});
+	}
+});
+
+// For internal calls
+// function refreshCourses(userId) {
+// 	console.log(Meteor.users.findOne(userId));
+// 	let education = Meteor.users.findOne(userId).education;
+// 	Meteor.users.update(userId, {
+// 		$set: {
+// 			courses: education.mandatoryCourses
+// 		}
+// 	});
+// }

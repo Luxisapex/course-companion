@@ -13,7 +13,8 @@ import SearchCourse from '../components/SearchCourse.jsx';
 export const MainLayout = ({content}) => (
 	<div className="main-layout">
 		{content}
-		<EducationList />
+		<AccountsUIWrapper />
+		<CourseList />
 		<InputField />
 	</div>
 );

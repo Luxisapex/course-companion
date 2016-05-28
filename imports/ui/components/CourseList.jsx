@@ -16,31 +16,36 @@ export default class CourseList extends TrackerReact(React.Component) {
 		this.state = {
 			subscription: {
 				courses: Meteor.subscribe('courses'),
-				// user: Meteor.subscribe('userData')
+				user: Meteor.subscribe('user')
 			}
 		}
 	}
 
 	componentWillUnmount() {
 	    this.state.subscription.courses.stop();
-	    // this.state.subscription.user.stop();
+	    this.state.subscription.user.stop();
 	}
 
 	courses() {
-		console.log(Meteor.user());
-		return Courses.find({}).fetch();
+		// Problem on refres
+		if(this.state.subscription.user.ready())
+			console.log(Meteor.user().courses);
+			return Meteor.user().courses;
+		return [];
 	}
 
 	render() {
 		let pointsSum = 0;
 		return (
 			<ul className="courses">
-				{this.courses().map((course)=> {
-					if(course.finished) {
-						pointsSum += course.points;
-					}
-					return <Course key={course._id} course={course} />
-				})}
+				{
+					this.courses().map((course)=> {
+						if(course.finished) {
+							pointsSum += course.points;
+						}
+						return <Course key={course._id} course={course} />
+					})
+				}
 				{ Meteor.user() ?
 					<b className="sum-margin">{pointsSum}</b> : 'Does not display sum if not logged in'
 				}
