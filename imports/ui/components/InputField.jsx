@@ -49,10 +49,6 @@ export default class InputField extends TrackerReact(React.Component) {
 		this.refs.input.value = "";
 	}
 
-	// courses() {
-	// 	return Courses.find({}).fetch();
-	// }
-
 	render() {
 		if(this.state.subscription.user.ready()) {
 			let user = Meteor.user();

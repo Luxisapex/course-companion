@@ -3,6 +3,8 @@ import { Meteor } from 'meteor/meteor';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
+import { Educations } from '../educations/educations.js';
+
 export const addEducation = new ValidatedMethod({
 	name: 'users.addEducation',
 	validate: new SimpleSchema({
@@ -10,9 +12,10 @@ export const addEducation = new ValidatedMethod({
 		education: { type: String },
 	}).validator(),
 	run({ userId, education }) {
+		console.log(this);
 		Meteor.users.update(userId, {
 			$set: {
-				education: education
+				education: Educations.findOne({name: education})
 			}}, {
 				upsert: true
 			}

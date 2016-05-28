@@ -15,10 +15,7 @@ import '../../api/users/server/publications.js';
 
 // Specifies more fields on accountCreation
 Accounts.onCreateUser(function(options, user) {
-	// user.education = 'industriell ekonomi';
-	// user.technical = 'datateknik';
-	// user.master = 'strategi och styrning';
-
+	
 	user.courses = {};
 
 	if (options.profile) {
@@ -32,7 +29,7 @@ Accounts.onCreateUser(function(options, user) {
 Meteor.startup(() => {
 	// Make sure no login keys persist over server restart
 	Meteor.users.update({}, {$set : { "services.resume.loginTokens" : [] }}, {multi:true});
-	// Fill Courses DB with this data if empty
+	// Fill DB with this data if empty
 	if (Educations.find().count() === 0) {
 		const data = [
 			{
