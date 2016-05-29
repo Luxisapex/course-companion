@@ -1,8 +1,5 @@
 import React from 'react';
 
-
-// <InputField user={Meteor.user()}/>
-
 import AccountsUIWrapper from '../components/AccountsUIWrapper.jsx';
 import Navbar from '../components/Navbar.jsx';
 import CourseList from '../components/CourseList.jsx';

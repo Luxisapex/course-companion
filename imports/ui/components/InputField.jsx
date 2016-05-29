@@ -3,11 +3,7 @@
 import React from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
-//Importing these two for trying courses with search bar
-import { Courses } from '../../api/courses/courses.js';
-
-import Course from './Course.jsx';
-//
+import { Educations } from '../../api/educations/educations.js';
 
 import { addEducation, addTechnical, addMaster, refreshCourses } from '../../api/users/methods.js';
 
@@ -16,10 +12,19 @@ export default class InputField extends TrackerReact(React.Component) {
 	constructor() {
 		super();
 		this.state = {
+			search: '',
 			subscription: {
 				user: Meteor.subscribe('user')
 			}
 		};
+	}
+
+	updateSearch(event) {
+		this.setState({search: event.target.value});
+	}
+
+	educations() {
+		return Educations.find({"name": {$regex : new RegExp(this.state.search, "i")}}).fetch();
 	}
 
 	handleInput(event) {
@@ -74,18 +79,30 @@ export default class InputField extends TrackerReact(React.Component) {
 		}
 
 		return (
-			<form onSubmit={this.handleInput.bind(this)}> 
-				<input
-					type="text"
-					ref="input"
-				/>
-				<input
-					type="button"
-					ref="button"
-					value="Update courses"
-					onClick={this.handleButton.bind(this)}
-				/>
-			</form>
+			<div>
+				<form onSubmit={this.handleInput.bind(this)}> 
+					<input
+						type="text"
+						value={this.state.search}
+						onChange={this.updateSearch.bind(this)}
+						ref="input"
+					/>
+					<input
+						type="button"
+						ref="button"
+						value="Update courses"
+						onClick={this.handleButton.bind(this)}
+					/>
+				</form>
+				<ul>	
+						
+					{this.educations().map((education) => {
+						return education.name;
+					})}
+
+						
+				</ul>
+			</div>
 		);
 	}
 };
