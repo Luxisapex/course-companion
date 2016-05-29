@@ -99,7 +99,7 @@ Meteor.startup(() => {
 
 			education.courses.forEach((code) => {
 				let course = Courses.findOne({code: code});
-				console.log(course);
+				console.log(course._id);
 				Educations.update({name: education.name}, {
 					$push: {
 						mandatoryCourses: course
