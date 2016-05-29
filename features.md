@@ -4,8 +4,8 @@
 Create a class that SearchableCourse and UserCourse can inherit from
 
 ## Functionality
-* make courses subdocuments in educations, not just objects
-* extend course.jsx to fit search AND normal display with different artifacts
+* hide courses from search if they are already in users collection
+* make courses in mandatoryCourses have _id
 * sum up all hp, also for different "inriktningar"
 * give courses "en/flera inriktining/ar" possible as an array
 * Start with indek, data, strategí and show all O-courses.

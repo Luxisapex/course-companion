@@ -13,6 +13,9 @@ Courses.deny({
 
 // Define the schema 
 Courses.schema = new SimpleSchema({
+	_id: {
+		type: String
+	},
 	name: {
 		type: String,
 		label: "Course name"
