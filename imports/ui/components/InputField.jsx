@@ -4,6 +4,7 @@ import React from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
 import { Educations } from '../../api/educations/educations.js';
+import Education from './Education.jsx';
 
 import { addEducation, addTechnical, addMaster, refreshCourses } from '../../api/users/methods.js';
 
@@ -63,7 +64,7 @@ export default class InputField extends TrackerReact(React.Component) {
 			});
 		}
 
-		this.refs.input.value = "";
+		this.setState({search: ''});
 	}
 
 	// Temporary solution to do async
@@ -108,7 +109,7 @@ export default class InputField extends TrackerReact(React.Component) {
 				<ul>	
 						
 					{this.educations().map((education) => {
-						return education.name;
+						return <Education key={education._id} education={education} />;
 					})}
 
 						
