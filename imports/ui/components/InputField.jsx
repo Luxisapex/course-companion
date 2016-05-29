@@ -24,7 +24,18 @@ export default class InputField extends TrackerReact(React.Component) {
 	}
 
 	educations() {
-		return Educations.find({"name": {$regex : new RegExp(this.state.search, "i")}}).fetch();
+		if(this.state.subscription.user.ready()) {
+			let user = Meteor.user();
+			if(user.master) {
+				return [];
+			} else if(user.technical) {
+				return Educations.find({type: "master", name: {$regex : new RegExp(this.state.search, "i")}}).fetch();
+			} else if(user.education) {
+				return Educations.find({type: "tech", name: {$regex : new RegExp(this.state.search, "i")}}).fetch();
+			}
+			return Educations.find({type: "base", name: {$regex : new RegExp(this.state.search, "i")}}).fetch();		
+		}
+		return [];
 	}
 
 	handleInput(event) {

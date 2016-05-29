@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { _ } from 'underscore';
 
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
@@ -16,7 +17,7 @@ export const addEducation = new ValidatedMethod({
 	run({ userId, education }) {
 		Meteor.users.update(userId, {
 			$set: {
-				education: Educations.findOne({name: education})
+				education: Educations.findOne({name: education, type: "base"})
 			}
 		});
 	}, 
@@ -31,7 +32,7 @@ export const addTechnical = new ValidatedMethod({
 	run({ userId, technical }) {
 		Meteor.users.update(userId, {
 			$set: {
-				technical: technical
+				technical: Educations.findOne({name: technical, type: "tech"})
 			}
 		});
 	}, 
@@ -46,7 +47,7 @@ export const addMaster = new ValidatedMethod({
 	run({ userId, master }) {
 		Meteor.users.update(userId, {
 			$set: {
-				master: master
+				master: Educations.findOne({name: master, type: "master"})
 			}
 		});
 	}, 
@@ -75,11 +76,40 @@ export const refreshCourses = new ValidatedMethod({
 		userId: { type: String },
 	}).validator(),
 	run({ userId }) {
-		let education = Meteor.users.findOne(userId).education;
+
+		// Union of courses
+		function arrayUnion(arr1, arr2) {
+		    var union = arr1.concat(arr2);
+
+		    for (var i = 0; i < union.length; i++) {
+		        for (var j = i+1; j < union.length; j++) {
+		            if (areCoursesEqual(union[i], union[j])) {
+		                union.splice(j, 1);
+		                j--;
+		            }
+		        }
+		    }
+
+		    return union;
+		}
+
+		function areCoursesEqual(c1, c2) {
+		    return c1._id === c2._id;
+		}
+
+		// Unites all courses across user, edu, tech and master, and puts them in user.courses
+		let userCourses = Meteor.users.findOne(userId).courses;
+		if(Meteor.users.findOne(userId).education){
+			userCourses = arrayUnion(userCourses, Meteor.users.findOne(userId).education.mandatoryCourses);
+		}
+		if(Meteor.users.findOne(userId).technical){
+			userCourses = arrayUnion(userCourses, Meteor.users.findOne(userId).technical.mandatoryCourses);
+		}
+		if(Meteor.users.findOne(userId).master){
+			userCourses = arrayUnion(userCourses, Meteor.users.findOne(userId).master.mandatoryCourses);
+		}
 		Meteor.users.update(userId, {
-			$set: {
-				courses: education.mandatoryCourses
-			}
+			$set: { courses: userCourses }
 		});
 	}
 });
