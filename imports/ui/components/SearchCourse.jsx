@@ -53,7 +53,9 @@ export default class SearchCourse extends React.Component {
 
 			<div>
 				<input type="text" value={this.state.search} 
-					onChange={this.updateSearch.bind(this)} />
+					onChange={this.updateSearch.bind(this)}
+					placeholder="Search for a course"
+				/>
 				<ul>	
 						
 					{this.courses().map((course) => {

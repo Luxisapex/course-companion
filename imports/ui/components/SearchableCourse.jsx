@@ -18,8 +18,6 @@ import React from 'react';
 export default class SearchableCourse extends React.Component {
 	
 	addCourse() {
-		console.log("Added the course");
-		console.log(this.props.course);
 		addCourse.call({
 			userId: Meteor.userId(),
 			courseId: this.props.course.code

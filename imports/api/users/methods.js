@@ -32,10 +32,8 @@ export const addTechnical = new ValidatedMethod({
 		Meteor.users.update(userId, {
 			$set: {
 				technical: technical
-			}}, {
-				upsert: true
 			}
-		);
+		});
 	}, 
 });
 
@@ -49,10 +47,8 @@ export const addMaster = new ValidatedMethod({
 		Meteor.users.update(userId, {
 			$set: {
 				master: master
-			}}, {
-				upsert: true
 			}
-		);
+		});
 	}, 
 });
 
@@ -65,7 +61,7 @@ export const addCourse = new ValidatedMethod({
 	run({ userId, courseId }) {
 		let course = Courses.findOne({code: courseId});
 		Meteor.users.update(userId, {
-			$push: {
+			$addToSet: {
 				courses: course
 			}
 		});

@@ -88,7 +88,7 @@ Meteor.startup(() => {
 				]
 			},
 		];
-		// Fills array with Courses, and creates Education with that array
+		// Fill array with Courses, and creates Education with that array
 		educationData.forEach((education) => {
 
 			Educations.insert({
@@ -99,9 +99,8 @@ Meteor.startup(() => {
 
 			education.courses.forEach((code) => {
 				let course = Courses.findOne({code: code});
-				console.log(course._id);
 				Educations.update({name: education.name}, {
-					$push: {
+					$addToSet: {
 						mandatoryCourses: course
 					}
 				});
