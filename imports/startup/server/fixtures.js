@@ -73,7 +73,7 @@ Meteor.startup(() => {
 		const educationData = [
 			{
 				name: 'Industriell Ekonomi',
-				nickname: 'I',
+				type: 'base',
 				courses: [
 					"TEIE17",
 					"TATA31"
@@ -81,19 +81,52 @@ Meteor.startup(() => {
 			},
 			{
 				name: 'Teknisk Fysik',
-				nickname: 'Y',
+				type: 'base',
 				courses: [
 					"TFAE12",
 					"TATA31"
 				]
 			},
+			{
+				name: 'Datateknik',
+				type: 'tech',
+				courses: [
+					"TDDD95",
+					"TATA41"
+				]
+			},
+			{
+				name: 'Maskinteknik',
+				type: 'tech',
+				courses: [
+					"TEIO61",
+					"TATA41"
+				]
+			},
+			{
+				name: 'Strategi och styrning',
+				type: 'master',
+				courses: [
+					"TEIE55",
+					"TATA43"
+				]
+			},
+			{
+				name: 'Logistik',
+				type: 'master',
+				courses: [
+					"TEIE55",
+					"TATA42"
+				]
+			},
+
 		];
 		// Fill array with Courses, and creates Education with that array
 		educationData.forEach((education) => {
 
 			Educations.insert({
 				name: education.name,
-				nickname: education.nickname,
+				type: education.type,
 				mandatoryCourses: []
 			});
 

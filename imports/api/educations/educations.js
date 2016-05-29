@@ -18,14 +18,13 @@ Educations.schema = new SimpleSchema({
 		type: String,
 		label: "Education name"
 	},
-	nickname: {
-		type: String,
-		label: "Course code"
+	type: {
+		type: String
 	},
 	mandatoryCourses: {
 		type: [Course]
 	}
 });
 
-// Attach the schema to the collection
+// Attach the schema to the collectio
 Educations.attachSchema(Educations.schema);
