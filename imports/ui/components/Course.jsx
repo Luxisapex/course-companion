@@ -18,14 +18,16 @@ import React from 'react';
 export default class Course extends React.Component {
 
 	removeCourse() {
-			deleteCourse.call({
-			courseId: this.props.course._id
+		deleteCourse.call({
+			userId: Meteor.userId(),
+			courseId: this.props.course.code
 		});
 	}
 
 	toggleChecked() {
 		toggleFinished.call({
-			courseId: this.props.course._id,
+			userId: Meteor.userId(),
+			courseId: this.props.course.code,
 			currentState: this.props.course.finished
 		});
 	}
