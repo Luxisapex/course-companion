@@ -21,5 +21,3 @@ We intend to use Meteor for running our server. We have a little bit of experien
 Heroku was at first our platform of choice, because we have some previous experience using it with very few hick-ups, but in an attempt to learn something new, we intend to deploy to Openshift, with Heroku being a fall-back. We have no knowledge of potential compatability issues in specific deployment environments, so we did not consider the rest of our tech stack when choosing to work with Openshift.
 ### Testing
 We don't know how we will go about testing yet, but will research it and are open to suggestions. We believe Selenium may be useful in terms of UI testing but have never used it before.
-### Deployment system
-Probably we will use Webpack to handle dependencies and bundling in our application and we believe it fits under this headline.
