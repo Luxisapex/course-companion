@@ -28,10 +28,10 @@ Courses.schema = new SimpleSchema({
 		type: Number,
 		label: "Points"
 	},
-	finished: {
-		type: Boolean,
-		defaultValue: false
-	}
+	// finished: {
+	// 	type: Boolean,
+	// 	defaultValue: false
+	// }
 });
 
 // Export for use in education

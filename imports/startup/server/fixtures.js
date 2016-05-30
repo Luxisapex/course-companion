@@ -74,6 +74,7 @@ Meteor.startup(() => {
 			{
 				name: 'Industriell Ekonomi',
 				type: 'base',
+				requirements: 300,
 				courses: [
 					"TEIE17",
 					"TATA31"
@@ -82,6 +83,7 @@ Meteor.startup(() => {
 			{
 				name: 'Teknisk Fysik',
 				type: 'base',
+				requirements: 300,
 				courses: [
 					"TFAE12",
 					"TATA31"
@@ -90,6 +92,7 @@ Meteor.startup(() => {
 			{
 				name: 'Datateknik',
 				type: 'tech',
+				requirements: 70,
 				courses: [
 					"TDDD95",
 					"TATA41"
@@ -98,6 +101,7 @@ Meteor.startup(() => {
 			{
 				name: 'Maskinteknik',
 				type: 'tech',
+				requirements: 70,
 				courses: [
 					"TEIO61",
 					"TATA41"
@@ -106,6 +110,7 @@ Meteor.startup(() => {
 			{
 				name: 'Strategi och styrning',
 				type: 'master',
+				requirements: 60,
 				courses: [
 					"TEIE55",
 					"TATA43"
@@ -114,6 +119,7 @@ Meteor.startup(() => {
 			{
 				name: 'Logistik',
 				type: 'master',
+				requirements: 60,
 				courses: [
 					"TEIE55",
 					"TATA42"
@@ -127,6 +133,7 @@ Meteor.startup(() => {
 			Educations.insert({
 				name: education.name,
 				type: education.type,
+				requirements: education.requirements,
 				mandatoryCourses: []
 			});
 

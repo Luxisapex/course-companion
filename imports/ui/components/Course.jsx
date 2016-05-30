@@ -24,29 +24,25 @@ export default class Course extends React.Component {
 		});
 	}
 
-	toggleChecked() {
-		toggleFinished.call({
-			userId: Meteor.userId(),
-			courseId: this.props.course.code,
-			currentState: this.props.course.finished
-		});
-	}
+	// toggleChecked() {
+	// 	toggleFinished.call({
+	// 		userId: Meteor.userId(),
+	// 		courseId: this.props.course.code,
+	// 		currentState: this.props.course.finished
+	// 	});
+	// }
 
 	render() {
 
 		const courseClass = this.props.course.finished ? "pure-g checked" : "pure-g";
+		const linkAddress = "http://kdb-5.liu.se/liu/lith//studiehandboken/svkursplan.lasso?k_budget_year=2016&k_kurskod=" + this.props.course.code;
 
 		return (
 			<li className={courseClass}>
-				<a className="pure-u-1-12" href="/main">{this.props.course.code}</a>
+				<a className="pure-u-1-12" href={linkAddress}>{this.props.course.code}</a>
 				<span className="pure-u-1-24">{this.props.course.points}</span>
 				<span className="pure-u-1-8">{this.props.course.name}</span>
-				<input className="pure-u-1-24" 
-					type="checkbox"
-					readOnly={true}
-					checked={this.props.course.finished}
-					onClick={this.toggleChecked.bind(this)}
-				/>
+				
 				<a className="pure-u-1-24" href="" onClick={this.removeCourse.bind(this)}>
 					<i className="fa fa-trash" aria-hidden="true"></i>
 				</a>
@@ -54,3 +50,10 @@ export default class Course extends React.Component {
 		);
 	}
 }
+
+// <input className="pure-u-1-24" 
+// 	type="checkbox"
+// 	readOnly={true}
+// 	checked={this.props.course.finished}
+// 	onClick={this.toggleChecked.bind(this)}
+// />

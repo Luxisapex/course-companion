@@ -21,6 +21,9 @@ Educations.schema = new SimpleSchema({
 	type: {
 		type: String
 	},
+	requirements: {
+		type: Number
+	},
 	mandatoryCourses: {
 		type: [Course]
 	}

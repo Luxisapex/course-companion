@@ -16,3 +16,7 @@
 	margin-left: 110px;
 	border-top: solid black 1px;
 }
+
+.points {
+	list-style: none;
+}
