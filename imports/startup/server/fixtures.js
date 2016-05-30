@@ -75,6 +75,9 @@ Meteor.startup(() => {
 				name: 'Industriell Ekonomi',
 				type: 'base',
 				requirements: 300,
+				mandatoryCourses: [
+					"TEIE17"
+				],
 				courses: [
 					"TEIE17",
 					"TATA31"
@@ -84,6 +87,9 @@ Meteor.startup(() => {
 				name: 'Teknisk Fysik',
 				type: 'base',
 				requirements: 300,
+				mandatoryCourses: [
+					"TFAE12"
+				],
 				courses: [
 					"TFAE12",
 					"TATA31"
@@ -93,6 +99,9 @@ Meteor.startup(() => {
 				name: 'Datateknik',
 				type: 'tech',
 				requirements: 70,
+				mandatoryCourses: [
+					"TDDD95"
+				],
 				courses: [
 					"TDDD95",
 					"TATA41"
@@ -102,6 +111,9 @@ Meteor.startup(() => {
 				name: 'Maskinteknik',
 				type: 'tech',
 				requirements: 70,
+				mandatoryCourses: [
+					"TATA41"
+				],
 				courses: [
 					"TEIO61",
 					"TATA41"
@@ -111,6 +123,9 @@ Meteor.startup(() => {
 				name: 'Strategi och styrning',
 				type: 'master',
 				requirements: 60,
+				mandatoryCourses: [
+					"TATA43"
+				],
 				courses: [
 					"TEIE55",
 					"TATA43"
@@ -120,6 +135,9 @@ Meteor.startup(() => {
 				name: 'Logistik',
 				type: 'master',
 				requirements: 60,
+				mandatoryCourses: [
+					"TATA42"
+				],
 				courses: [
 					"TEIE55",
 					"TATA42"
@@ -134,10 +152,11 @@ Meteor.startup(() => {
 				name: education.name,
 				type: education.type,
 				requirements: education.requirements,
-				mandatoryCourses: []
+				mandatoryCourses: [],
+				courses: []
 			});
 
-			education.courses.forEach((code) => {
+			education.mandatoryCourses.forEach((code) => {
 				let course = Courses.findOne({code: code});
 				Educations.update({name: education.name}, {
 					$addToSet: {
@@ -145,6 +164,16 @@ Meteor.startup(() => {
 					}
 				});
 			});
+
+			education.courses.forEach((code) => {
+				let course = Courses.findOne({code: code});
+				Educations.update({name: education.name}, {
+					$addToSet: {
+						courses: course
+					}
+				});
+			});
+			
 		});
 	}
 });
