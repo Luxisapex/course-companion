@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
 import { Educations } from '../../api/educations/educations.js';
@@ -6,8 +6,8 @@ import Education from './Education.jsx';
 
 import { addEducation, addTechnical, addMaster, refreshCourses } from '../../api/users/methods.js';
 
-export default class InputField extends TrackerReact(React.Component) {
-	// Needed to make sure reloading works
+export default class InputField extends TrackerReact(Component) {
+	
 	constructor() {
 		super();
 		this.state = {
@@ -104,13 +104,10 @@ export default class InputField extends TrackerReact(React.Component) {
 						onClick={this.handleButton.bind(this)}
 					/>
 				</form>
-				<ul>	
-						
+				<ul>
 					{this.educations().map((education) => {
 						return <Education key={education._id} education={education} />;
-					})}
-
-						
+					})}		
 				</ul>
 			</div>
 		);
