@@ -69,6 +69,29 @@ export const addCourse = new ValidatedMethod({
 	}, 
 });
 
+export const deleteCourse = new ValidatedMethod({
+	name: 'courses.deleteCourse',
+	validate: new SimpleSchema({
+		userId: { type: String },
+		courseId: { type: String },
+	}).validator(),
+	run({ userId, courseId}) {
+		Meteor.users.update(
+			{
+				'_id': userId
+			},
+			{
+				'$pull':
+				{
+					'courses': {
+						'code': courseId
+					}
+				}
+			}
+		);
+	},
+});
+
 // Intended to make the users courses correspond to the mandatory of education
 export const refreshCourses = new ValidatedMethod({
 	name: 'users.refreshCourses',

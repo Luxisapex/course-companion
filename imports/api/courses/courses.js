@@ -28,14 +28,9 @@ Courses.schema = new SimpleSchema({
 		type: Number,
 		label: "Points"
 	},
-	// finished: {
-	// 	type: Boolean,
-	// 	defaultValue: false
-	// }
 });
 
 // Export for use in education
 export const Course = Courses.schema;
 
-// Attach the schema to the collection
 Courses.attachSchema(Courses.schema);

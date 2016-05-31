@@ -1,7 +1,5 @@
 import { Mongo } from 'meteor/mongo';
-
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-
 import { Course } from '../courses/courses.js';
 
 export const Educations = new Mongo.Collection('Educations');
@@ -12,7 +10,6 @@ Educations.deny({
 	remove() { return true; },
 });
 
-// Should include requirements for diploma
 Educations.schema = new SimpleSchema({
 	name: {
 		type: String,
@@ -32,5 +29,4 @@ Educations.schema = new SimpleSchema({
 	}
 });
 
-// Attach the schema to the collectio
 Educations.attachSchema(Educations.schema);
