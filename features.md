@@ -2,6 +2,9 @@
 
 ##Fixes
 Create a class that SearchableCourse and UserCourse can inherit from
+Make educations more dynamic
+Make users only store _id of courses and educations
+Make inputField way smaller, split up components
 
 ## Functionality
 * hide courses from search if they are already in users collection

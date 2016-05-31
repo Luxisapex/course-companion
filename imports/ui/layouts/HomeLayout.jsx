@@ -2,9 +2,8 @@ import React from 'react';
 
 import AccountsUIWrapper from '../components/AccountsUIWrapper.jsx';
 
-export const HomeLayout = ({content}) => (
+export const HomeLayout = () => (
 	<div className="home-layout">
 		<AccountsUIWrapper />
-		{content}
 	</div>
 )
