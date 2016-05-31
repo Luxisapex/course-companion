@@ -30,7 +30,6 @@ export default class CourseList extends TrackerReact(React.Component) {
 	}
 
 	courses() {
-		// Problem on refres
 		if(this.state.subscription.user.ready()) {
 			return Meteor.user().courses;
 		}
