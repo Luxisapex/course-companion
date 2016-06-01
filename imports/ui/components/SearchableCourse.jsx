@@ -10,7 +10,6 @@ import '../stylesheets/font-awesome.css';
 // Need this?
 import { Courses } from '../../api/courses/courses.js';
 
-import { toggleFinished, deleteCourse } from '../../api/courses/methods.js';
 import { addCourse } from '../../api/users/methods.js';
 
 import React from 'react';
@@ -26,13 +25,40 @@ export default class SearchableCourse extends React.Component {
 
 	render() {
 
+		const linkAddress = "http://kdb-5.liu.se/liu/lith//studiehandboken/svkursplan.lasso?k_budget_year=2016&k_kurskod=" + this.props.course.code;
+
+		let typeIconClass = '';
+
+		if(this.props.type === 'master') {
+			typeIconClass = 'fa fa-star';
+		} else if (this.props.type === 'technical') {
+			typeIconClass = 'fa fa-wrench';
+		} else if (this.props.type === 'base') {
+			typeIconClass = 'fa fa-pencil';
+		} else {
+			typeIconClass = 'fa fa-question';
+		}
+
 		const courseClass = this.props.course.finished ? "pure-g checked" : "pure-g";
 
 		return (
 			<li className={courseClass}>
-				<a className="pure-u-1-12" href="/main">{this.props.course.code}</a>
-				<span className="pure-u-1-24">{this.props.course.points}</span>
-				<span className="pure-u-1-8">{this.props.course.name}</span>
+				<a className="pure-u-1-12" href={linkAddress}>
+					{this.props.course.code}
+				</a>
+
+				<span className="pure-u-1-24">
+					{this.props.course.points}
+				</span>
+
+				<span className="pure-u-1-24">
+					<i className={typeIconClass} aria-hidden="true"></i>
+				</span>
+
+				<span className="pure-u-1-8">
+					{this.props.course.name}
+				</span>
+				
 				<a className="pure-u-1-24" href="" onClick={this.addCourse.bind(this)}>
 					<i className="fa fa-plus" aria-hidden="true"></i>
 				</a>
