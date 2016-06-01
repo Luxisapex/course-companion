@@ -9,11 +9,7 @@ export default class SearchCourse extends TrackerReact(Component) {
 	constructor() {
 		super();
 		this.state = {
-			search: '',
-			subscription: {
-				user: Meteor.subscribe('user'),
-				courses: Meteor.subscribe('courses')
-			}
+			search: ''
 		};
 	}
 
@@ -23,13 +19,10 @@ export default class SearchCourse extends TrackerReact(Component) {
 
 	// Filter input on existing courses
 	courses() {
-		if(this.state.subscription.user.ready()) {
-			return Courses.find({ "$or": [
-				{"code": {$regex : this.state.search.toUpperCase()}},
-				{"name": {$regex : new RegExp(this.state.search, "i")}}
-				]}).fetch();
-		}
-		return [];
+		return Courses.find({ "$or": [
+			{"code": {$regex : this.state.search.toUpperCase()}},
+			{"name": {$regex : new RegExp(this.state.search, "i")}}
+			]}).fetch();
 	}
 
 	render() {	
