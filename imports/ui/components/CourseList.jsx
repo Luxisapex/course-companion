@@ -154,5 +154,3 @@ export default class CourseList extends TrackerReact(React.Component) {
 		);
 	}
 }
-// { Meteor.user().technical ? <li className="points"><br/><b>Left to finish technical {Meteor.user().technical.requirements - pointsSum}</b></li> : '' }
-				// { Meteor.user().master ? <li className="points"><br/><b>Left to finish master {Meteor.user().master.requirements - pointsSum}</b></li> : '' }
