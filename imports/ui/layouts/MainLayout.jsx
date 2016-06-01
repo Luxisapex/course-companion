@@ -3,7 +3,7 @@ import '../stylesheets/pure.css';
 import React from 'react';
 
 import AccountsUIWrapper from '../components/AccountsUIWrapper.jsx';
-import UserWrapper from '../components/CourseList.jsx';
+import UserWrapper from '../components/UserWrapper.jsx';
 import InputField from '../components/InputField.jsx';
 import SearchCourse from '../components/SearchCourse.jsx';
 

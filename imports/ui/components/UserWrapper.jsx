@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 // import Education from './Education.jsx';
 // tech
 // master
 
 // UserCourseList?
 import CourseList from './CourseList.jsx';
+import GraduationRequirements from './GraduationRequirements.jsx';
 
-// import Examenskravwhatever
-
-export const UserWrapper = () => (
-	<div>
-		<CourseList />
-	</div>
-)
+export default class UserWrapper extends Component {
+	render() {
+		return(
+			<div>
+				<CourseList />
+				<GraduationRequirements />
+			</div>
+		);
+	}
+}
