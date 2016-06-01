@@ -3,6 +3,7 @@ import '../stylesheets/style.css';
 import '../stylesheets/font-awesome.css';
 
 import React, { Component } from 'react';
+import Educations from '../../api/educations/educations.js';
 
 export default class Course extends Component {
 
@@ -10,37 +11,44 @@ export default class Course extends Component {
 		super();
 		this.state = {
 			subscription: {
-				user: Meteor.subscribe('user')
+				user: Meteor.subscribe('user'),
+				educations: Meteor.subscribe('educations')
 			}
 		}
 	}
 
 	// Checks if a course is part of the users education
 	isEducation() {
-		let courses = Meteor.user().education.courses;
-		for(let i = 0; i < courses.length; i++) {
-			if(courses[i].code === this.props.course.code) {
-				return true;
+		if(this.state.subscription.user.ready()) {
+			let courses = Educations.findOne(Meteor.user().education).courses;
+			for(let i = 0; i < courses.length; i++) {
+				if(courses[i].code === this.props.course.code) {
+					return true;
+				}
 			}
 		}
 	}
 
 	// Checks if a course is a technical course
 	isTech() {
-		let courses = Meteor.user().technical.courses;
-		for(let i = 0; i < courses.length; i++) {
-			if(courses[i].code === this.props.course.code) {
-				return true;
+		if(this.state.subscription.user.ready()) {
+			let courses = Educations.findOne(Meteor.user().technical).courses;
+			for(let i = 0; i < courses.length; i++) {
+				if(courses[i].code === this.props.course.code) {
+					return true;
+				}
 			}
 		}
 	}
 
 	// Checks if a course is a master course
 	isMaster() {
-		let courses = Meteor.user().master.courses;
-		for(let i = 0; i < courses.length; i++) {
-			if(courses[i].code === this.props.course.code) {
-				return true;
+		if(this.state.subscription.user.ready()) {
+			let courses = Educations.findOne(Meteor.user().master).courses;
+			for(let i = 0; i < courses.length; i++) {
+				if(courses[i].code === this.props.course.code) {
+					return true;
+				}
 			}
 		}
 	}

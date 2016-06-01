@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
+import { Courses } from '../../api/courses/courses.js';
+import { Educations } from '../../api/educations/educations.js';
+
 export default class TechnicalRequirements extends TrackerReact(React.Component) {
 	
 	constructor() {
 		super();
 		this.state = {
 			subscription: {
-				user: Meteor.subscribe('user')
+				user: Meteor.subscribe('user'),
+				educations: Meteor.subscribe('educations')
 			}
 		}
 	}
 
 	isTech(course) {
-		let courses = Meteor.user().technical.courses;
+		let courses = Educations.findOne(Meteor.user().technical).courses;
 		for(let i = 0; i < courses.length; i++) {
 			if(courses[i].code === course.code) {
 				return true;
@@ -30,17 +34,20 @@ export default class TechnicalRequirements extends TrackerReact(React.Component)
 				for(let i = 0; i < technicalCourses.length; i++) {
 					technicalSum += technicalCourses[i].points;
 				}
-				return Meteor.user().technical.requirements-technicalSum;
+				return Educations.findOne(Meteor.user().technical).requirements-technicalSum;
 			}
 		}
 		return '-';
 	}
 
 	courses() {
+		let courses = [];
 		if(this.state.subscription.user.ready()) {
-			return Meteor.user().courses;
+			Meteor.user().courses.forEach((courseId) => {
+				courses.push(Courses.findOne(courseId));
+			})
 		}
-		return [];
+		return courses;
 	}
 
 	render() {

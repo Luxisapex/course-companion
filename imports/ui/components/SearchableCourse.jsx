@@ -7,7 +7,7 @@ export default class SearchableCourse extends Component {
 	addCourse() {
 		addCourse.call({
 			userId: Meteor.userId(),
-			courseId: this.props.course.code
+			courseId: this.props.course._id
 		});
 	}
 

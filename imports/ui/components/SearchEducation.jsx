@@ -23,14 +23,18 @@ export default class InputField extends TrackerReact(Component) {
 
 	educations() {
 		let user = Meteor.user();
-		if(user.master) {
-			return [];
-		} else if(user.technical) {
-			return Educations.find({type: "master", name: {$regex : new RegExp(this.state.search, "i")}}).fetch();
-		} else if(user.education) {
-			return Educations.find({type: "tech", name: {$regex : new RegExp(this.state.search, "i")}}).fetch();
+		let educations = [];
+		if(user) {
+			if(user.master) {
+			} else if(user.technical) {
+				educations = Educations.find({type: "master", name: {$regex : new RegExp(this.state.search, "i")}}).fetch();
+			} else if(user.education) {
+				educations = Educations.find({type: "tech", name: {$regex : new RegExp(this.state.search, "i")}}).fetch();
+			} else {
+				educations = Educations.find({type: "base", name: {$regex : new RegExp(this.state.search, "i")}}).fetch();
+			}
 		}
-		return Educations.find({type: "base", name: {$regex : new RegExp(this.state.search, "i")}}).fetch();
+		return educations;
 	}
 
 	removeText() {

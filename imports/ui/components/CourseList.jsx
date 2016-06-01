@@ -25,10 +25,13 @@ export default class CourseList extends TrackerReact(React.Component) {
 	}
 
 	courses() {
+		let courses = [];
 		if(this.state.subscription.user.ready()) {
-			return Meteor.user().courses;
+			Meteor.user().courses.forEach((courseId) => {
+				courses.push(Courses.findOne(courseId));
+			})
 		}
-		return [];
+		return courses;
 	}
 
 	render() {
@@ -38,7 +41,7 @@ export default class CourseList extends TrackerReact(React.Component) {
 				{
 					this.courses().map((course)=> {
 						pointsSum += course.points;
-						return <UserCourse key={course.code} course={course} />
+						return <UserCourse key={course._id} course={course} />
 					})
 				}
 				<li className="points">{ Meteor.user() ? <b className="sum-margin">Total points: {pointsSum}</b> : 'Does not display sum if not logged in' }</li>				

@@ -7,7 +7,7 @@ export default class UserCourse extends Component {
 	deleteCourse() {
 		deleteCourse.call({
 			userId: Meteor.userId(),
-			courseId: this.props.course.code
+			courseId: this.props.course._id
 		});
 	}
 

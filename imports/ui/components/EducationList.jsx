@@ -5,6 +5,8 @@ import UserEducation from './UserEducation.jsx';
 import UserTechnical from './UserTechnical.jsx';
 import UserMaster from './UserMaster.jsx';
 
+import { Educations } from '../../api/educations/educations.js';
+
 export default class EducationList extends TrackerReact(Component) {
 
 	constructor() {
@@ -12,26 +14,27 @@ export default class EducationList extends TrackerReact(Component) {
 		this.state = {
 			search: '',
 			subscription: {
-				user: Meteor.subscribe('user')
+				user: Meteor.subscribe('user'),
+				educations: Meteor.subscribe('educations')
 			}
 		};
 	}
 
 	education() {
 		if(this.state.subscription.user.ready())
-			return Meteor.users.findOne(Meteor.userId()).education || { name: '-' }
+			return Educations.findOne(Meteor.user().education) || { name: '-' }
 		return { name: '-' }
 	}
 
 	technical() {
 		if(this.state.subscription.user.ready())
-			return Meteor.users.findOne(Meteor.userId()).technical || { name: '-' }
+			return Educations.findOne(Meteor.user().technical) || { name: '-' }
 		return { name: '-' }
 	}
 
 	master() {
 		if(this.state.subscription.user.ready())
-			return Meteor.users.findOne(Meteor.userId()).master || { name: '-' }
+			return Educations.findOne(Meteor.user().master) || { name: '-' }
 		return { name: '-' }
 	}
 

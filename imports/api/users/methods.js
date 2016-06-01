@@ -15,13 +15,13 @@ export const addEducation = new ValidatedMethod({
 	run({ userId, education }) {
 		Meteor.users.update(userId, {
 			$set: {
-				education: Educations.findOne({name: education, type: "base"})
+				education: Educations.findOne({name: education, type: "base"})._id
 			}
 		});
-		Meteor.users.findOne(userId).education.mandatoryCourses.forEach((educationCourse) => {
+		Educations.findOne(Meteor.users.findOne(userId).education).mandatoryCourses.forEach((educationCourse) => {
 			Meteor.users.update(userId, {
 				$addToSet: {
-					courses: educationCourse
+					courses: educationCourse._id
 				}
 			});
 		});
@@ -53,13 +53,13 @@ export const addTechnical = new ValidatedMethod({
 	run({ userId, technical }) {
 		Meteor.users.update(userId, {
 			$set: {
-				technical: Educations.findOne({name: technical, type: "tech"})
+				technical: Educations.findOne({name: technical, type: "tech"})._id
 			}
 		});
-		Meteor.users.findOne(userId).technical.mandatoryCourses.forEach((technicalCourse) => {
+		Educations.findOne(Meteor.users.findOne(userId).technical).mandatoryCourses.forEach((technicalCourse) => {
 			Meteor.users.update(userId, {
 				$addToSet: {
-					courses: technicalCourse
+					courses: technicalCourse._id
 				}
 			});
 		});
@@ -90,13 +90,13 @@ export const addMaster = new ValidatedMethod({
 	run({ userId, master }) {
 		Meteor.users.update(userId, {
 			$set: {
-				master: Educations.findOne({name: master, type: "master"})
+				master: Educations.findOne({name: master, type: "master"})._id
 			}
 		});
-		Meteor.users.findOne(userId).master.mandatoryCourses.forEach((masterCourse) => {
+		Educations.findOne(Meteor.users.findOne(userId).master).mandatoryCourses.forEach((masterCourse) => {
 			Meteor.users.update(userId, {
 				$addToSet: {
-					courses: masterCourse
+					courses: masterCourse._id
 				}
 			});
 		});
@@ -124,10 +124,9 @@ export const addCourse = new ValidatedMethod({
 		courseId: { type: String },
 	}).validator(),
 	run({ userId, courseId }) {
-		let course = Courses.findOne({code: courseId});
 		Meteor.users.update(userId, {
 			$addToSet: {
-				courses: course
+				courses: courseId
 			}
 		});
 	}, 
@@ -147,9 +146,7 @@ export const deleteCourse = new ValidatedMethod({
 			{
 				'$pull':
 				{
-					'courses': {
-						'code': courseId
-					}
+					'courses': courseId
 				}
 			}
 		);
