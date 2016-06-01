@@ -1,5 +1,4 @@
 import { Mongo } from 'meteor/mongo';
-
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 export const Courses = new Mongo.Collection('Courses');
@@ -29,8 +28,5 @@ Courses.schema = new SimpleSchema({
 		label: "Points"
 	},
 });
-
-// Export for use in education
-export const Course = Courses.schema;
 
 Courses.attachSchema(Courses.schema);

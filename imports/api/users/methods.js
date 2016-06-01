@@ -18,10 +18,10 @@ export const addEducation = new ValidatedMethod({
 				education: Educations.findOne({name: education, type: "base"})._id
 			}
 		});
-		Educations.findOne(Meteor.users.findOne(userId).education).mandatoryCourses.forEach((educationCourse) => {
+		Educations.findOne(Meteor.users.findOne(userId).education).mandatoryCourses.forEach((courseId) => {
 			Meteor.users.update(userId, {
 				$addToSet: {
-					courses: educationCourse._id
+					courses: courseId
 				}
 			});
 		});
@@ -56,10 +56,10 @@ export const addTechnical = new ValidatedMethod({
 				technical: Educations.findOne({name: technical, type: "tech"})._id
 			}
 		});
-		Educations.findOne(Meteor.users.findOne(userId).technical).mandatoryCourses.forEach((technicalCourse) => {
+		Educations.findOne(Meteor.users.findOne(userId).technical).mandatoryCourses.forEach((courseId) => {
 			Meteor.users.update(userId, {
 				$addToSet: {
-					courses: technicalCourse._id
+					courses: courseId
 				}
 			});
 		});
@@ -93,10 +93,10 @@ export const addMaster = new ValidatedMethod({
 				master: Educations.findOne({name: master, type: "master"})._id
 			}
 		});
-		Educations.findOne(Meteor.users.findOne(userId).master).mandatoryCourses.forEach((masterCourse) => {
+		Educations.findOne(Meteor.users.findOne(userId).master).mandatoryCourses.forEach((courseId) => {
 			Meteor.users.update(userId, {
 				$addToSet: {
-					courses: masterCourse._id
+					courses: courseId
 				}
 			});
 		});

@@ -1,6 +1,5 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import { Course } from '../courses/courses.js';
 
 export const Educations = new Mongo.Collection('Educations');
 
@@ -22,10 +21,10 @@ Educations.schema = new SimpleSchema({
 		type: Number
 	},
 	mandatoryCourses: {
-		type: [Course]
+		type: [String]
 	},
 	courses: {
-		type: [Course]
+		type: [String]
 	}
 });
 
