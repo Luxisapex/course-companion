@@ -4,7 +4,7 @@ import React from 'react';
 
 import AccountsUIWrapper from '../components/AccountsUIWrapper.jsx';
 import UserWrapper from '../components/UserWrapper.jsx';
-import InputField from '../components/InputField.jsx';
+import SearchEducation from '../components/SearchEducation.jsx';
 import SearchCourse from '../components/SearchCourse.jsx';
 
 export const MainLayout = () => (
@@ -14,7 +14,7 @@ export const MainLayout = () => (
 		    <div className="pure-u-1-2">
 		    	<AccountsUIWrapper />
 				<UserWrapper />
-				<InputField />
+				<SearchEducation />
 		    </div>
 		    <div className="pure-u-1-2">
 		    	<SearchCourse />

@@ -6,12 +6,14 @@ import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
 // UserCourseList?
 import CourseList from './CourseList.jsx';
+import EducationList from './EducationList.jsx';
 import GraduationRequirements from './GraduationRequirements.jsx';
 
 export default class UserWrapper extends TrackerReact(Component) {
 	render() {
 		return(
 			<div>
+				<EducationList />
 				<CourseList />
 				<GraduationRequirements />
 			</div>

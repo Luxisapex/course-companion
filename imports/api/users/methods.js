@@ -29,6 +29,20 @@ export const addEducation = new ValidatedMethod({
 	}, 
 });
 
+export const removeEducation = new ValidatedMethod({
+	name: 'users.removeEducation',
+	validate: new SimpleSchema({
+		userId: { type: String },
+	}).validator(),
+	run({ userId }) {
+		Meteor.users.update(userId, {
+			$set: {
+				education: null
+			}
+		});
+	}
+});
+
 export const addTechnical = new ValidatedMethod({
 	name: 'users.addTechnical',
 	validate: new SimpleSchema({
@@ -51,6 +65,20 @@ export const addTechnical = new ValidatedMethod({
 	}, 
 });
 
+export const removeTechnical = new ValidatedMethod({
+	name: 'users.removeTechnical',
+	validate: new SimpleSchema({
+		userId: { type: String },
+	}).validator(),
+	run({ userId }) {
+		Meteor.users.update(userId, {
+			$set: {
+				technical: null
+			}
+		});
+	}
+});
+
 export const addMaster = new ValidatedMethod({
 	name: 'users.addMaster',
 	validate: new SimpleSchema({
@@ -71,6 +99,20 @@ export const addMaster = new ValidatedMethod({
 			});
 		});
 	}, 
+});
+
+export const removeMaster = new ValidatedMethod({
+	name: 'users.removeMaster',
+	validate: new SimpleSchema({
+		userId: { type: String },
+	}).validator(),
+	run({ userId }) {
+		Meteor.users.update(userId, {
+			$set: {
+				master: null
+			}
+		});
+	}
 });
 
 export const addCourse = new ValidatedMethod({
