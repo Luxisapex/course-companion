@@ -19,7 +19,7 @@ export default class TechnicalRequirements extends TrackerReact(React.Component)
 	isTech(course) {
 		let courses = Educations.findOne(Meteor.user().technical).courses;
 		for(let i = 0; i < courses.length; i++) {
-			if(courses[i].code === course.code) {
+			if(courses[i] === course._id) {
 				return true;
 			}
 		}

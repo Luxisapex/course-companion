@@ -3,7 +3,8 @@ import '../stylesheets/style.css';
 import '../stylesheets/font-awesome.css';
 
 import React, { Component } from 'react';
-import Educations from '../../api/educations/educations.js';
+
+import { Educations } from '../../api/educations/educations.js';
 
 export default class Course extends Component {
 
@@ -19,36 +20,30 @@ export default class Course extends Component {
 
 	// Checks if a course is part of the users education
 	isEducation() {
-		if(this.state.subscription.user.ready()) {
-			let courses = Educations.findOne(Meteor.user().education).courses;
-			for(let i = 0; i < courses.length; i++) {
-				if(courses[i].code === this.props.course.code) {
-					return true;
-				}
+		let courses = Educations.findOne(Meteor.user().education).courses;
+		for(let i = 0; i < courses.length; i++) {
+			if(courses[i] === this.props.course._id) {
+				return true;
 			}
 		}
 	}
 
 	// Checks if a course is a technical course
 	isTech() {
-		if(this.state.subscription.user.ready()) {
-			let courses = Educations.findOne(Meteor.user().technical).courses;
-			for(let i = 0; i < courses.length; i++) {
-				if(courses[i].code === this.props.course.code) {
-					return true;
-				}
+		let courses = Educations.findOne(Meteor.user().technical).courses;
+		for(let i = 0; i < courses.length; i++) {
+			if(courses[i] === this.props.course._id) {
+				return true;
 			}
 		}
 	}
 
 	// Checks if a course is a master course
 	isMaster() {
-		if(this.state.subscription.user.ready()) {
-			let courses = Educations.findOne(Meteor.user().master).courses;
-			for(let i = 0; i < courses.length; i++) {
-				if(courses[i].code === this.props.course.code) {
-					return true;
-				}
+		let courses = Educations.findOne(Meteor.user().master).courses;
+		for(let i = 0; i < courses.length; i++) {
+			if(courses[i] === this.props.course._id) {
+				return true;
 			}
 		}
 	}

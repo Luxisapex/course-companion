@@ -144,7 +144,7 @@ Meteor.startup(() => {
 			},
 
 		];
-		// Fill array with Courses, and creates Education with tha array
+		// Fill array with Courses, and creates Education with that array
 		educationData.forEach((education) => {
 
 			Educations.insert({

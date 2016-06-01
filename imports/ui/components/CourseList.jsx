@@ -29,7 +29,7 @@ export default class CourseList extends TrackerReact(React.Component) {
 		if(this.state.subscription.user.ready()) {
 			Meteor.user().courses.forEach((courseId) => {
 				courses.push(Courses.findOne(courseId));
-			})
+			});
 		}
 		return courses;
 	}

@@ -138,7 +138,7 @@ export const deleteCourse = new ValidatedMethod({
 		userId: { type: String },
 		courseId: { type: String },
 	}).validator(),
-	run({ userId, courseId}) {
+	run({ userId, courseId }) {
 		Meteor.users.update(
 			{
 				'_id': userId

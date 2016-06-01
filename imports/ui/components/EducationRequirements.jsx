@@ -33,7 +33,7 @@ export default class EducationRequirements extends TrackerReact(React.Component)
 	isEducation(course) {
 		let courses = Educations.findOne(Meteor.user().education).courses;
 		for(let i = 0; i < courses.length; i++) {
-			if(courses[i].code === course.code) {
+			if(courses[i] === course._id) {
 				return true;
 			}
 		}
