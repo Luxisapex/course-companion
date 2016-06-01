@@ -1,5 +1,4 @@
 import { Meteor } from 'meteor/meteor';
-import { _ } from 'underscore';
 
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
@@ -20,6 +19,13 @@ export const addEducation = new ValidatedMethod({
 				education: Educations.findOne({name: education, type: "base"})
 			}
 		});
+		Meteor.users.findOne(userId).education.mandatoryCourses.forEach((educationCourse) => {
+			Meteor.users.update(userId, {
+				$addToSet: {
+					courses: educationCourse
+				}
+			});
+		});
 	}, 
 });
 
@@ -35,6 +41,13 @@ export const addTechnical = new ValidatedMethod({
 				technical: Educations.findOne({name: technical, type: "tech"})
 			}
 		});
+		Meteor.users.findOne(userId).technical.mandatoryCourses.forEach((technicalCourse) => {
+			Meteor.users.update(userId, {
+				$addToSet: {
+					courses: technicalCourse
+				}
+			});
+		});
 	}, 
 });
 
@@ -49,6 +62,13 @@ export const addMaster = new ValidatedMethod({
 			$set: {
 				master: Educations.findOne({name: master, type: "master"})
 			}
+		});
+		Meteor.users.findOne(userId).master.mandatoryCourses.forEach((masterCourse) => {
+			Meteor.users.update(userId, {
+				$addToSet: {
+					courses: masterCourse
+				}
+			});
 		});
 	}, 
 });
@@ -93,49 +113,49 @@ export const deleteCourse = new ValidatedMethod({
 });
 
 // Intended to make the users courses correspond to the mandatory of education
-export const refreshCourses = new ValidatedMethod({
-	name: 'users.refreshCourses',
-	validate: new SimpleSchema({
-		userId: { type: String },
-	}).validator(),
-	run({ userId }) {
+// export const refreshCourses = new ValidatedMethod({
+// 	name: 'users.refreshCourses',
+// 	validate: new SimpleSchema({
+// 		userId: { type: String },
+// 	}).validator(),
+// 	run({ userId }) {
 
-		// Union of courses
-		function arrayUnion(arr1, arr2) {
-		    var union = arr1.concat(arr2);
+// 		// Union of courses
+// 		function arrayUnion(arr1, arr2) {
+// 		    var union = arr1.concat(arr2);
 
-		    for (var i = 0; i < union.length; i++) {
-		        for (var j = i+1; j < union.length; j++) {
-		            if (areCoursesEqual(union[i], union[j])) {
-		                union.splice(j, 1);
-		                j--;
-		            }
-		        }
-		    }
+// 		    for (var i = 0; i < union.length; i++) {
+// 		        for (var j = i+1; j < union.length; j++) {
+// 		            if (areCoursesEqual(union[i], union[j])) {
+// 		                union.splice(j, 1);
+// 		                j--;
+// 		            }
+// 		        }
+// 		    }
 
-		    return union;
-		}
+// 		    return union;
+// 		}
 
-		function areCoursesEqual(c1, c2) {
-		    return c1._id === c2._id;
-		}
+// 		function areCoursesEqual(c1, c2) {
+// 		    return c1._id === c2._id;
+// 		}
 
-		// Unites all courses across user, edu, tech and master, and puts them in user.courses
-		let userCourses = Meteor.users.findOne(userId).courses;
-		if(Meteor.users.findOne(userId).education){
-			userCourses = arrayUnion(userCourses, Meteor.users.findOne(userId).education.mandatoryCourses);
-		}
-		if(Meteor.users.findOne(userId).technical){
-			userCourses = arrayUnion(userCourses, Meteor.users.findOne(userId).technical.mandatoryCourses);
-		}
-		if(Meteor.users.findOne(userId).master){
-			userCourses = arrayUnion(userCourses, Meteor.users.findOne(userId).master.mandatoryCourses);
-		}
-		Meteor.users.update(userId, {
-			$set: { courses: userCourses }
-		});
-	}
-});
+// 		// Unites all courses across user, edu, tech and master, and puts them in user.courses
+// 		let userCourses = Meteor.users.findOne(userId).courses;
+// 		if(Meteor.users.findOne(userId).education){
+// 			userCourses = arrayUnion(userCourses, Meteor.users.findOne(userId).education.mandatoryCourses);
+// 		}
+// 		if(Meteor.users.findOne(userId).technical){
+// 			userCourses = arrayUnion(userCourses, Meteor.users.findOne(userId).technical.mandatoryCourses);
+// 		}
+// 		if(Meteor.users.findOne(userId).master){
+// 			userCourses = arrayUnion(userCourses, Meteor.users.findOne(userId).master.mandatoryCourses);
+// 		}
+// 		Meteor.users.update(userId, {
+// 			$set: { courses: userCourses }
+// 		});
+// 	}
+// });
 
 // For internal calls
 // function refreshCourses(userId) {

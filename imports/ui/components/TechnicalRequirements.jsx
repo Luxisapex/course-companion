@@ -33,7 +33,7 @@ export default class TechnicalRequirements extends TrackerReact(React.Component)
 				return Meteor.user().technical.requirements-technicalSum;
 			}
 		}
-		return 0;
+		return '-';
 	}
 
 	courses() {

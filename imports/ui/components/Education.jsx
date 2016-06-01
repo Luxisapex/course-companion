@@ -3,15 +3,31 @@ import '../stylesheets/style.css';
 import '../stylesheets/font-awesome.css';
 
 import React, { Component } from 'react';
+import { addEducation, addTechnical, addMaster } from '../../api/users/methods.js';
 
 export default class Education extends Component {
 
 	addEducation() {
-		console.log('an education would have been added..');
-		// addEducation.call({
-		// 	userId: Meteor.user(),
-		// 	educationId: this.props.key
-		// });
+		let user = Meteor.user();
+		if(user.master) {
+			
+		} else if (user.technical) {
+			addMaster.call({
+				userId: Meteor.userId(),
+				master: this.props.education.name
+			});
+		} else if (user.education) {
+			addTechnical.call({
+				userId: Meteor.userId(),
+				technical: this.props.education.name
+			});
+		} else {
+			addEducation.call({
+				userId: Meteor.userId(),
+				education: this.props.education.name
+			});
+		}
+		this.props.removeText();
 	}
 
 	render() {

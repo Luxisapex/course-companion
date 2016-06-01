@@ -13,7 +13,8 @@ export default class InputField extends TrackerReact(Component) {
 		this.state = {
 			search: '',
 			subscription: {
-				user: Meteor.subscribe('user')
+				user: Meteor.subscribe('user'),
+				educations: Meteor.subscribe('educations')
 			}
 		};
 	}
@@ -62,16 +63,20 @@ export default class InputField extends TrackerReact(Component) {
 			});
 		}
 
-		this.setState({search: ''});
+		removeText().bind(this);
 	}
 
 	// Temporary solution to do async
-	handleButton(event) {
-		event.preventDefault();
+	// handleButton(event) {
+	// 	event.preventDefault();
 		
-		refreshCourses.call({
-			userId: Meteor.userId()
-		});
+	// 	refreshCourses.call({
+	// 		userId: Meteor.userId()
+	// 	});
+	// }
+
+	removeText() {
+		this.setState({search: ''});
 	}
 
 	render() {
@@ -97,19 +102,21 @@ export default class InputField extends TrackerReact(Component) {
 						onChange={this.updateSearch.bind(this)}
 						ref="input"
 					/>
-					<input
-						type="button"
-						ref="button"
-						value="Update courses"
-						onClick={this.handleButton.bind(this)}
-					/>
 				</form>
 				<ul>
 					{this.educations().map((education) => {
-						return <Education key={education._id} education={education} />;
-					})}		
+						return <Education key={education._id} education={education} removeText={this.removeText.bind(this)} />;
+					})}
 				</ul>
+				
 			</div>
 		);
 	}
 };
+
+// <input
+// 					type="button"
+// 					ref="button"
+// 					value="Update courses"
+// 					onClick={this.handleButton.bind(this)}
+// 				/>

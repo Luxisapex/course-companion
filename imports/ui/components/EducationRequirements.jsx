@@ -23,7 +23,7 @@ export default class EducationRequirements extends TrackerReact(React.Component)
 				return Meteor.user().education.requirements-sum;
 			}
 		}
-		return 0;
+		return '-';
 	}
 
 	isEducation(course) {

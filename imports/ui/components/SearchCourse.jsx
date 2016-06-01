@@ -35,7 +35,7 @@ export default class SearchCourse extends Component {
 				/>	
 				<ul>
 					{this.courses().map((course) => {
-						return <SearchableCourse key={course._id} course={course} type='base'/>
+						return <SearchableCourse key={course._id} course={course}/>
 					})}
 				</ul>
 			</div>

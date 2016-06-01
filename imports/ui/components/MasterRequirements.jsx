@@ -33,7 +33,7 @@ export default class MasterRequirements extends TrackerReact(React.Component) {
 				return Meteor.user().master.requirements-masterSum;
 			}
 		}
-		return 0;
+		return '-';
 	}
 
 	courses() {
