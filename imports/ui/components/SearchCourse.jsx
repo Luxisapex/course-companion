@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { Courses } from '../../api/courses/courses.js';
-import Course from './SearchableCourse.jsx';
+import SearchableCourse from './SearchableCourse.jsx';
 
 export default class SearchCourse extends Component {
 
@@ -35,7 +35,7 @@ export default class SearchCourse extends Component {
 				/>	
 				<ul>
 					{this.courses().map((course) => {
-						return <Course key={course._id} course={course} />
+						return <SearchableCourse key={course._id} course={course} type='base'/>
 					})}
 				</ul>
 			</div>

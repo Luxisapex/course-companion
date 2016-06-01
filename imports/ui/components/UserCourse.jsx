@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Course from './Course.jsx';
-import { addCourse } from '../../api/users/methods.js';
+import { deleteCourse } from '../../api/users/methods.js';
 
-export default class SearchableCourse extends Component {
+export default class UserCourse extends Component {
 	
-	addCourse() {
-		addCourse.call({
+	deleteCourse() {
+		deleteCourse.call({
 			userId: Meteor.userId(),
 			courseId: this.props.course.code
 		});
@@ -15,8 +15,8 @@ export default class SearchableCourse extends Component {
 		return(
 			<div>
 				<Course key={this.props.course._id} type={this.props.type} course={this.props.course}/>
-				<a className="pure-u-1-24" href="" onClick={this.addCourse.bind(this)}>
-					<i className="fa fa-plus" aria-hidden="true"></i>
+				<a className="pure-u-1-24" href="" onClick={this.deleteCourse.bind(this)}>
+					<i className="fa fa-trash" aria-hidden="true"></i>
 				</a>
 			</div>
 		);

@@ -11,12 +11,12 @@ export const MainLayout = () => (
 	
 	<div className="main-layout">
 		<div className="pure-g">
-		    <div className="pure-u-3-8">
+		    <div className="pure-u-1-2">
 		    	<AccountsUIWrapper />
 				<CourseList />
 				<InputField />
 		    </div>
-		    <div className="pure-u-5-8">
+		    <div className="pure-u-1-2">
 		    	<SearchCourse />
 		    </div>
 		</div>

@@ -3,16 +3,8 @@ import '../stylesheets/style.css';
 import '../stylesheets/font-awesome.css';
 
 import React, { Component } from 'react';
-import { addCourse, deleteCourse } from '../../api/users/methods.js';
 
 export default class Course extends Component {
-
-	deleteCourse() {
-		deleteCourse.call({
-			userId: Meteor.userId(),
-			courseId: this.props.course.code
-		});
-	}
 
 	render() {
 
@@ -32,25 +24,21 @@ export default class Course extends Component {
 
 		return (
 			<li className="pure-g">		
-				<a className="pure-u-1-12" href={linkAddress}>
+				<a className="pure-u-1-5" href={linkAddress}>
 					{this.props.course.code}
 				</a>
 				
-				<span className="pure-u-1-24">
+				<span className="pure-u-1-8">
 					{this.props.course.points}
 				</span>
 				
-				<span className="pure-u-1-24">
+				<span className="pure-u-1-8">
 					<i className={typeIconClass} aria-hidden="true"></i>
 				</span>
 				
-				<span className="pure-u-1-6">
+				<span className="pure-u-1-2">
 					{this.props.course.name}
 				</span>
-				
-				<a className="pure-u-1-24" href="" onClick={this.deleteCourse.bind(this)}>
-					<i className="fa fa-trash" aria-hidden="true"></i>
-				</a>
 			</li>
 		);
 	}
