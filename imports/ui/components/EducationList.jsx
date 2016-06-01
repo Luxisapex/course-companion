@@ -18,15 +18,21 @@ export default class EducationList extends TrackerReact(Component) {
 	}
 
 	education() {
-		return Meteor.users.findOne(Meteor.userId()).education || { name: '-' }
+		if(this.state.subscription.user.ready())
+			return Meteor.users.findOne(Meteor.userId()).education || { name: '-' }
+		return { name: '-' }
 	}
 
 	technical() {
-		return Meteor.users.findOne(Meteor.userId()).technical || { name: '-' }
+		if(this.state.subscription.user.ready())
+			return Meteor.users.findOne(Meteor.userId()).technical || { name: '-' }
+		return { name: '-' }
 	}
 
 	master() {
-		return Meteor.users.findOne(Meteor.userId()).master || { name: '-' }
+		if(this.state.subscription.user.ready())
+			return Meteor.users.findOne(Meteor.userId()).master || { name: '-' }
+		return { name: '-' }
 	}
 
 	render() {

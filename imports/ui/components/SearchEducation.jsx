@@ -4,8 +4,6 @@ import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import { Educations } from '../../api/educations/educations.js';
 import Education from './Education.jsx';
 
-import { addEducation, addTechnical, addMaster, refreshCourses } from '../../api/users/methods.js';
-
 export default class InputField extends TrackerReact(Component) {
 	
 	constructor() {
@@ -38,71 +36,20 @@ export default class InputField extends TrackerReact(Component) {
 		return [];
 	}
 
-	handleInput(event) {
-		event.preventDefault();
-		
-		let text = this.refs.input.value.trim();
-		let user = Meteor.user();
-
-		if(user.master) {
-			
-		} else if (user.technical) {
-			addMaster.call({
-				userId: Meteor.userId(),
-				master: text
-			});
-		} else if (user.education) {
-			addTechnical.call({
-				userId: Meteor.userId(),
-				technical: text
-			});
-		} else {
-			addEducation.call({
-				userId: Meteor.userId(),
-				education: text
-			});
-		}
-
-		removeText().bind(this);
-	}
-
-	// Temporary solution to do async
-	// handleButton(event) {
-	// 	event.preventDefault();
-		
-	// 	refreshCourses.call({
-	// 		userId: Meteor.userId()
-	// 	});
-	// }
-
 	removeText() {
 		this.setState({search: ''});
 	}
 
 	render() {
-		if(this.state.subscription.user.ready()) {
-			let user = Meteor.user();
-			if(user.master) {
-				this.refs.input.hidden = true;
-			} else if (user.technical) {
-				this.refs.input.placeholder = 'Master profile';
-			} else if (user.education) {
-				this.refs.input.placeholder = 'Technical specialization';
-			} else {
-				this.refs.input.placeholder = 'Education';
-			}
-		}
-
 		return (
 			<div>
-				<form onSubmit={this.handleInput.bind(this)}> 
-					<input
-						type="text"
-						value={this.state.search}
-						onChange={this.updateSearch.bind(this)}
-						ref="input"
-					/>
-				</form>
+				<input
+					type="text"
+					value={this.state.search}
+					onChange={this.updateSearch.bind(this)}
+					ref="input"
+					placeholder="Filter educations"
+				/>
 				<ul>
 					{this.educations().map((education) => {
 						return <Education key={education._id} education={education} removeText={this.removeText.bind(this)} />;
@@ -113,10 +60,3 @@ export default class InputField extends TrackerReact(Component) {
 		);
 	}
 };
-
-// <input
-// 					type="button"
-// 					ref="button"
-// 					value="Update courses"
-// 					onClick={this.handleButton.bind(this)}
-// 				/>
