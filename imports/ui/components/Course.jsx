@@ -7,12 +7,7 @@ import { addCourse, deleteCourse } from '../../api/users/methods.js';
 
 export default class Course extends Component {
 
-	deleteCourse() {
-		deleteCourse.call({
-			userId: Meteor.userId(),
-			courseId: this.props.course.code
-		});
-	}
+	
 
 	render() {
 
@@ -48,9 +43,6 @@ export default class Course extends Component {
 					{this.props.course.name}
 				</span>
 				
-				<a className="pure-u-1-24" href="" onClick={this.deleteCourse.bind(this)}>
-					<i className="fa fa-trash" aria-hidden="true"></i>
-				</a>
 			</li>
 		);
 	}

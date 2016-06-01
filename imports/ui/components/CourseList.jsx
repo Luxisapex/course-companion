@@ -6,7 +6,7 @@ import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import { Educations } from '../../api/educations/educations.js';
 import { Courses } from '../../api/courses/courses.js';
 
-import Course from './Course.jsx';
+import UserCourse from './UserCourse.jsx';
 
 import '../stylesheets/style.css';
 
@@ -141,7 +141,7 @@ export default class CourseList extends TrackerReact(React.Component) {
 				{
 					this.courses().map((course)=> {
 						pointsSum += course.points;
-						return <Course key={course.code} course={course} type={this.courseType(course)} />
+						return <UserCourse key={course.code} course={course} type={this.courseType(course)} />
 					})
 				}
 				<li className="points">{ Meteor.user() ? <b className="sum-margin">Total points: {pointsSum}</b> : 'Does not display sum if not logged in' }</li>
