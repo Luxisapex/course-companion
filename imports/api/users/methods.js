@@ -37,7 +37,9 @@ export const removeEducation = new ValidatedMethod({
 	run({ userId }) {
 		Meteor.users.update(userId, {
 			$set: {
-				education: null
+				education: null,
+				technical: null,
+				master: null
 			}
 		});
 	}
@@ -73,7 +75,8 @@ export const removeTechnical = new ValidatedMethod({
 	run({ userId }) {
 		Meteor.users.update(userId, {
 			$set: {
-				technical: null
+				technical: null,
+				master: null
 			}
 		});
 	}
