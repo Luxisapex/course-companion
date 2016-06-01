@@ -14,7 +14,7 @@ export default class UserCourse extends Component {
 	render() {
 		return(
 			<div>
-				<Course key={this.props.course._id} type={this.props.type} course={this.props.course}/>
+				<Course key={this.props.course._id} course={this.props.course}/>
 				<a className="pure-u-1-24" href="" onClick={this.deleteCourse.bind(this)}>
 					<i className="fa fa-trash" aria-hidden="true"></i>
 				</a>
